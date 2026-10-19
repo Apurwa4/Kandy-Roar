@@ -1,33 +1,43 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useRef, useState } from "react";
 import Image from "next/image";
 import confetti from "canvas-confetti";
 import {
   ScrollText,
   Send,
-  CheckCircle2,
   AlertCircle,
-  Sparkles,
   User,
   Mail,
-  Phone,
-  Calendar,
-  Building,
   GraduationCap,
   Briefcase,
   ShieldAlert,
   ShieldCheck,
-  IdCard,
-  Home,
-  MessageSquare,
   Copy,
   Check,
   RefreshCw,
-  FileCheck,
 } from "lucide-react";
 
 export default function RoyalRegistrationForm() {
+  const [step, setStep] = useState(0);
+  const formRef = useRef<HTMLFormElement>(null);
+  const steps = ["About you", "Contact", "Your university", "Your role", "Emergency contact"];
+  const goToStep = (next: number) => {
+    setErrorMsg(null);
+    setStep(next);
+    requestAnimationFrame(() => {
+      formRef.current?.scrollIntoView({ behavior: "smooth", block: "start" });
+      formRef.current?.querySelector<HTMLElement>("fieldset:not([disabled]) [data-step-heading]")?.focus({ preventScroll: true });
+    });
+  };
+  const validateStep = () => {
+    const controls = formRef.current?.querySelectorAll<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>("fieldset:not([disabled]) input, fieldset:not([disabled]) select, fieldset:not([disabled]) textarea");
+    for (const control of controls ?? []) {
+      control.setCustomValidity(control.required && !control.value.trim() ? "Please fill in this field." : "");
+      if (!control.reportValidity()) return false;
+    }
+    return true;
+  };
   const [formData, setFormData] = useState({
     fullName: "",
     email: "",
@@ -112,12 +122,18 @@ export default function RoyalRegistrationForm() {
     e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>
   ) => {
     const { name, value } = e.target;
+    e.target.setCustomValidity("");
     setFormData((prev) => ({ ...prev, [name]: value }));
     if (errorMsg) setErrorMsg(null);
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
+    if (!validateStep()) return;
+    if (step < steps.length - 1) {
+      goToStep(step + 1);
+      return;
+    }
     setErrorMsg(null);
 
     if (!formData.fullName.trim()) return setErrorMsg("Please provide your royal name.");
@@ -303,7 +319,7 @@ export default function RoyalRegistrationForm() {
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
             <button
-              onClick={() => setSuccessData(null)}
+              onClick={() => { setStep(0); setSuccessData(null); }}
               className="gold-btn px-6 py-2.5 rounded-full text-xs uppercase font-extrabold flex items-center gap-2"
             >
               <RefreshCw className="w-3.5 h-3.5" />
@@ -314,8 +330,9 @@ export default function RoyalRegistrationForm() {
       ) : (
         /* The Ancient Inscription Scroll Form */
         <form
+          ref={formRef}
           onSubmit={handleSubmit}
-          className="parchment-scroll rounded-3xl p-6 sm:p-10 lg:p-12 relative shadow-2xl space-y-8"
+          className="registration-wizard parchment-scroll rounded-3xl p-6 sm:p-10 lg:p-12 relative shadow-2xl space-y-8 scroll-mt-24"
         >
           {/* Scroll Header */}
           <div className="border-b-2 border-[#c9b382] pb-6 text-center">
@@ -333,6 +350,19 @@ export default function RoyalRegistrationForm() {
             </p>
           </div>
 
+          <div>
+            <div className="mb-3 flex justify-between gap-3 text-sm font-semibold text-[#750f24]" aria-live="polite">
+              <span>Step {step + 1} of {steps.length} · {steps[step]}</span>
+              <span>{Math.round((step / steps.length) * 100)}% complete</span>
+            </div>
+            <div role="progressbar" aria-label="Registration progress" aria-valuemin={0} aria-valuemax={5} aria-valuenow={step} className="h-2 overflow-hidden rounded-full bg-[#c9b382]/30">
+              <div className="h-full rounded-full bg-[#750f24] transition-[width] duration-300" style={{ width: `${step / steps.length * 100}%` }} />
+            </div>
+            <ol className="mt-4 hidden justify-between gap-3 sm:flex">
+              {steps.map((label, index) => <li key={label} aria-current={index === step ? "step" : undefined} className={`text-xs ${index === step ? "font-bold text-[#750f24]" : "text-[#6b4e45]"}`}>{index < step ? "✓ " : ""}{label}</li>)}
+            </ol>
+          </div>
+
           {/* Error Banner */}
           {errorMsg && (
             <div className="p-4 rounded-xl bg-[#ffd9df] border-2 border-[#a51934] text-[#750f24] text-xs sm:text-sm flex items-center gap-3 animate-shake">
@@ -342,21 +372,21 @@ export default function RoyalRegistrationForm() {
           )}
 
           {/* SECTION 1: IDENTITY OF THE VILLAGER */}
-          <div className="space-y-4">
+          <fieldset hidden={step !== 0} disabled={step !== 0 || isSubmitting} className="space-y-6">
             <div className="flex items-center gap-2 text-[#750f24] font-heading font-bold text-sm sm:text-base border-b border-[#c9b382]/60 pb-1.5">
               <User className="w-4 h-4 text-[#750f24]" />
-              <span>I. Royal Identity & Origin</span>
+              <span data-step-heading tabIndex={-1}>Let’s start with you</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Full Name */}
               <div className="sm:col-span-2 space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  What name shall be recorded in the royal registry? <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-fullName" className="block text-xs font-bold text-[#2b1810]">
+                  Full name <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Every villager has a name. Tell us yours!</p>
+                <p className="text-[11px] text-[#6b4e45]">Use your full name as it appears on your NIC.</p>
                 <input
-                  type="text"
+                  id="registry-fullName" type="text"
                   name="fullName"
                   required
                   value={formData.fullName}
@@ -368,12 +398,12 @@ export default function RoyalRegistrationForm() {
 
               {/* NIC Number */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  What is your royal identity number? (NIC Number) <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-nic" className="block text-xs font-bold text-[#2b1810]">
+                  NIC number <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Provide your NIC number for the royal records.</p>
+                <p className="text-[11px] text-[#6b4e45]">Your national identity card number.</p>
                 <input
-                  type="text"
+                  id="registry-nic" type="text"
                   name="nic"
                   required
                   value={formData.nic}
@@ -385,12 +415,12 @@ export default function RoyalRegistrationForm() {
 
               {/* Date of Birth */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  On which day did your story begin? (Date of Birth) <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-dob" className="block text-xs font-bold text-[#2b1810]">
+                  Date of birth <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Share your date of birth to complete your registry.</p>
+                
                 <input
-                  type="date"
+                  id="registry-dob" type="date"
                   name="dob"
                   required
                   value={formData.dob}
@@ -401,12 +431,12 @@ export default function RoyalRegistrationForm() {
 
               {/* Permanent Home Address */}
               <div className="sm:col-span-2 space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Where is your home village? (Permanent Home Address) <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-address" className="block text-xs font-bold text-[#2b1810]">
+                  Permanent home address <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Tell us where your journey begins by providing your home address.</p>
+                
                 <textarea
-                  rows={2}
+                  id="registry-address" rows={2}
                   name="address"
                   required
                   value={formData.address}
@@ -416,24 +446,24 @@ export default function RoyalRegistrationForm() {
                 />
               </div>
             </div>
-          </div>
+          </fieldset>
 
           {/* SECTION 2: ROYAL MESSENGERS (COMMUNICATIONS) */}
-          <div className="space-y-4">
+          <fieldset hidden={step !== 1} disabled={step !== 1 || isSubmitting} className="space-y-6">
             <div className="flex items-center gap-2 text-[#750f24] font-heading font-bold text-sm sm:text-base border-b border-[#c9b382]/60 pb-1.5">
               <Mail className="w-4 h-4 text-[#750f24]" />
-              <span>II. Royal Messengers & Dispatch</span>
+              <span data-step-heading tabIndex={-1}>How can we reach you?</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Email */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Where can the royal messengers reach you? (Email Address) <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-email" className="block text-xs font-bold text-[#2b1810]">
+                  Email address <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Share your email address for royal announcements.</p>
+                <p className="text-[11px] text-[#6b4e45]">Event updates will be sent here.</p>
                 <input
-                  type="email"
+                  id="registry-email" type="email"
                   name="email"
                   required
                   value={formData.email}
@@ -445,12 +475,12 @@ export default function RoyalRegistrationForm() {
 
               {/* WhatsApp Contact */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Contact Number (WhatsApp preferred) <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-phone" className="block text-xs font-bold text-[#2b1810]">
+                  Contact number (WhatsApp preferred) <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Where our royal messengers can reach you whenever needed.</p>
+                <p className="text-[11px] text-[#6b4e45]">Include your country code if outside Sri Lanka.</p>
                 <input
-                  type="tel"
+                  id="registry-phone" type="tel"
                   name="phone"
                   required
                   value={formData.phone}
@@ -460,24 +490,24 @@ export default function RoyalRegistrationForm() {
                 />
               </div>
             </div>
-          </div>
+          </fieldset>
 
           {/* SECTION 3: ACADEMIC REALM & ENTITY */}
-          <div className="space-y-4">
+          <fieldset hidden={step !== 2} disabled={step !== 2 || isSubmitting} className="space-y-6">
             <div className="flex items-center gap-2 text-[#750f24] font-heading font-bold text-sm sm:text-base border-b border-[#c9b382]/60 pb-1.5">
               <GraduationCap className="w-4 h-4 text-[#750f24]" />
-              <span>III. Academic Realm & Allegiance</span>
+              <span data-step-heading tabIndex={-1}>Your university & entity</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* AIESEC Entity */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Which kingdom do you represent? (Your AIESEC Entity) <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-entity" className="block text-xs font-bold text-[#2b1810]">
+                  AIESEC entity <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">We welcome villagers from across the island.</p>
+                
                 <select
-                  name="entity"
+                  id="registry-entity" name="entity"
                   required
                   value={formData.entity}
                   onChange={handleChange}
@@ -494,6 +524,8 @@ export default function RoyalRegistrationForm() {
                   <input
                     type="text"
                     name="entityOther"
+                    required
+                    aria-label="Other AIESEC entity"
                     placeholder="Specify other AIESEC entity..."
                     value={formData.entityOther}
                     onChange={handleChange}
@@ -504,12 +536,12 @@ export default function RoyalRegistrationForm() {
 
               {/* Faculty */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  In which realm do you pursue your studies? (Your Faculty) <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-faculty" className="block text-xs font-bold text-[#2b1810]">
+                  Faculty <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Tell us your faculty/academic realm.</p>
+                
                 <select
-                  name="faculty"
+                  id="registry-faculty" name="faculty"
                   required
                   value={formData.faculty}
                   onChange={handleChange}
@@ -526,6 +558,8 @@ export default function RoyalRegistrationForm() {
                   <input
                     type="text"
                     name="facultyOther"
+                    required
+                    aria-label="Other faculty or institute"
                     placeholder="Specify other faculty / institute..."
                     value={formData.facultyOther}
                     onChange={handleChange}
@@ -536,12 +570,12 @@ export default function RoyalRegistrationForm() {
 
               {/* University Reg Number */}
               <div className="sm:col-span-2 space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Official number in the kingdom of knowledge? (University Reg No.)
+                <label htmlFor="registry-uniRegNo" className="block text-xs font-bold text-[#2b1810]">
+                  University registration number (optional)
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Optional: Share your student / registration number.</p>
+                
                 <input
-                  type="text"
+                  id="registry-uniRegNo" type="text"
                   name="uniRegNo"
                   value={formData.uniRegNo}
                   onChange={handleChange}
@@ -550,24 +584,24 @@ export default function RoyalRegistrationForm() {
                 />
               </div>
             </div>
-          </div>
+          </fieldset>
 
           {/* SECTION 4: ROYAL DUTIES & COUNCIL */}
-          <div className="space-y-4">
+          <fieldset hidden={step !== 3} disabled={step !== 3 || isSubmitting} className="space-y-6">
             <div className="flex items-center gap-2 text-[#750f24] font-heading font-bold text-sm sm:text-base border-b border-[#c9b382]/60 pb-1.5">
               <Briefcase className="w-4 h-4 text-[#750f24]" />
-              <span>IV. Royal Duties & Council Rank</span>
+              <span data-step-heading tabIndex={-1}>Your role in AIESEC</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-3 gap-4">
               {/* Front Office */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Front Office Royal Duty <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-frontOffice" className="block text-xs font-bold text-[#2b1810]">
+                  Front Office <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Select your FO exchange programme function.</p>
+                
                 <select
-                  name="frontOffice"
+                  id="registry-frontOffice" name="frontOffice"
                   required
                   value={formData.frontOffice}
                   onChange={handleChange}
@@ -584,12 +618,12 @@ export default function RoyalRegistrationForm() {
 
               {/* Back Office */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Back Office Royal Department <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-backOffice" className="block text-xs font-bold text-[#2b1810]">
+                  Back Office <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">How you contribute to the kingdom.</p>
+                
                 <select
-                  name="backOffice"
+                  id="registry-backOffice" name="backOffice"
                   required
                   value={formData.backOffice}
                   onChange={handleChange}
@@ -606,12 +640,12 @@ export default function RoyalRegistrationForm() {
 
               {/* Position */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Position in Royal Council <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-position" className="block text-xs font-bold text-[#2b1810]">
+                  Current position <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Select your current leadership tier.</p>
+                
                 <select
-                  name="position"
+                  id="registry-position" name="position"
                   required
                   value={formData.position}
                   onChange={handleChange}
@@ -626,24 +660,24 @@ export default function RoyalRegistrationForm() {
                 </select>
               </div>
             </div>
-          </div>
+          </fieldset>
 
           {/* SECTION 5: EMERGENCY CONTACT & MESSAGE */}
-          <div className="space-y-4">
+          <fieldset hidden={step !== 4} disabled={step !== 4 || isSubmitting} className="space-y-6">
             <div className="flex items-center gap-2 text-[#750f24] font-heading font-bold text-sm sm:text-base border-b border-[#c9b382]/60 pb-1.5">
               <ShieldAlert className="w-4 h-4 text-[#750f24]" />
-              <span>V. Court Assistance & Proclamation Note</span>
+              <span data-step-heading tabIndex={-1}>One last thing: emergency contact</span>
             </div>
 
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {/* Emergency Contact Person */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Who should the royal court call for assistance? (Emergency Contact) <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-emergencyName" className="block text-xs font-bold text-[#2b1810]">
+                  Emergency contact name <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Name someone to contact if an emergency arises.</p>
+                <p className="text-[11px] text-[#6b4e45]">A parent, guardian, sibling, or someone you trust.</p>
                 <input
-                  type="text"
+                  id="registry-emergencyName" type="text"
                   name="emergencyName"
                   required
                   value={formData.emergencyName}
@@ -655,12 +689,12 @@ export default function RoyalRegistrationForm() {
 
               {/* Emergency Contact Number */}
               <div className="space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  How can the royal messengers reach them? (Emergency Phone) <span className="text-[#a51934]">*</span>
+                <label htmlFor="registry-emergencyPhone" className="block text-xs font-bold text-[#2b1810]">
+                  Emergency contact phone <span className="text-[#a51934]">*</span>
                 </label>
-                <p className="text-[11px] text-[#6b4e45]">Their direct contact number.</p>
+                
                 <input
-                  type="tel"
+                  id="registry-emergencyPhone" type="tel"
                   name="emergencyPhone"
                   required
                   value={formData.emergencyPhone}
@@ -672,14 +706,14 @@ export default function RoyalRegistrationForm() {
 
               {/* Message to Court */}
               <div className="sm:col-span-2 space-y-1">
-                <label className="block text-xs font-bold text-[#2b1810]">
-                  Any message for the royal court? (Optional)
+                <label htmlFor="registry-message" className="block text-xs font-bold text-[#2b1810]">
+                  Anything else we should know? (optional)
                 </label>
                 <p className="text-[11px] text-[#6b4e45]">
                   Is there anything else you&apos;d like the royal court to know before your arrival? (Dietary needs, expectations, or thoughts)
                 </p>
                 <textarea
-                  rows={2}
+                  id="registry-message" rows={2}
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
@@ -688,15 +722,17 @@ export default function RoyalRegistrationForm() {
                 />
               </div>
             </div>
-          </div>
+          </fieldset>
 
           {/* Submit Button & Assurance */}
           <div className="pt-4 border-t-2 border-[#c9b382] flex flex-col sm:flex-row items-center justify-between gap-4">
             <div className="text-xs text-[#5a403a] flex items-center gap-2">
               <ShieldCheck className="w-4 h-4 text-[#750f24]" />
-              <span>All information is kept strictly within the royal archives of AIESEC in Kandy.</span>
+              <span>Your details are kept within AIESEC in Kandy.</span>
             </div>
 
+            <div className="flex w-full items-center gap-3 sm:w-auto">
+            {step > 0 && <button type="button" disabled={isSubmitting} onClick={() => goToStep(step - 1)} className="rounded-full border border-[#750f24]/30 px-6 py-3 text-sm font-bold text-[#750f24] hover:bg-[#750f24]/5 disabled:opacity-50">Back</button>}
             <button
               type="submit"
               disabled={isSubmitting}
@@ -709,11 +745,12 @@ export default function RoyalRegistrationForm() {
                 </>
               ) : (
                 <>
-                  <span>Fulfill Rajakariya • Inscribe</span>
+                  <span>{step === steps.length - 1 ? "Submit registration" : "Continue →"}</span>
                   <Send className="w-4 h-4" />
                 </>
               )}
             </button>
+            </div>
           </div>
         </form>
       )}

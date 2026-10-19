@@ -172,6 +172,29 @@ body {
   }
 }
 
+.registration-wizard fieldset .grid {
+  gap: 1.75rem;
+}
+
+.registration-wizard label {
+  font-size: 0.875rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
+.registration-wizard input,
+.registration-wizard select,
+.registration-wizard textarea {
+  min-height: 3.25rem;
+  font-size: 1rem;
+}
+
+.registration-wizard fieldset p {
+  font-size: 0.75rem;
+  line-height: 1.6;
+  margin-bottom: 0.5rem;
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 9px;
