@@ -295,8 +295,8 @@ export default function RoyalRegistrationForm() {
             />
           </div>
 
-          <div className="font-sinhala text-2xl text-[#750f24] font-bold">
-            රාජකීය ලියාපදිංචිය තහවුරු විය!
+          <div className="font-heading text-2xl text-[#750f24] font-bold">
+            Your Royal Registration Is Confirmed!
           </div>
 
           <h3 className="font-heading text-2xl sm:text-3xl font-black text-[#210408] mt-1">
@@ -340,7 +340,7 @@ export default function RoyalRegistrationForm() {
             </div>
 
             <div className="mt-4 pt-3 border-t border-[#c9b382]/50 flex items-center justify-between">
-              <span className="text-[10px] font-sinhala text-[#750f24] font-bold">රාජකාරිය අනුමතයි • 10 Years LDS</span>
+              <span className="text-[10px] text-[#750f24] font-bold">Royal Duty Approved • 10 Years LDS</span>
               <button
                 onClick={handleCopyId}
                 className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-md bg-[#23040a] text-[#fae19c] hover:bg-[#3a0610] transition-colors"
@@ -384,7 +384,7 @@ export default function RoyalRegistrationForm() {
           <div className="border-b-2 border-[#c9b382] pb-6 text-center">
             <div className="flex items-center justify-center gap-3 text-lg font-bold text-[#750f24]">
               <div className="w-8 h-px bg-[#c9b382]" />
-              <span className="font-sinhala">රාජකීය ආරාධනය</span>
+              <span className="font-heading">A Royal Invitation</span>
               <div className="w-8 h-px bg-[#c9b382]" />
             </div>
             <h3 className="font-heading text-xl sm:text-2xl font-black text-[#210408] mt-1">

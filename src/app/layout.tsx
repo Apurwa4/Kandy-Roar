@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Cinzel, Plus_Jakarta_Sans, Noto_Serif_Sinhala } from "next/font/google";
+import { Cinzel, Plus_Jakarta_Sans } from "next/font/google";
 import "./globals.css";
 
 const cinzel = Cinzel({
@@ -12,12 +12,6 @@ const jakarta = Plus_Jakarta_Sans({
   variable: "--font-body",
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
-});
-
-const sinhala = Noto_Serif_Sinhala({
-  variable: "--font-sinhala",
-  subsets: ["sinhala"],
-  weight: ["400", "600", "700"],
 });
 
 export const metadata: Metadata = {
@@ -38,7 +32,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Kandy Roar 7.0 | A Royal Proclamation • Registrations Open",
     description:
-      "Answer the royal call, fulfil your Rajakariya, and become part of this grand gathering celebrating 10 glorious years of AIESEC in Kandy.",
+      "Answer the royal call, fulfil your royal duty, and become part of this grand gathering celebrating 10 glorious years of AIESEC in Kandy.",
     images: ["/images/kandy-roar-poster.jpg"],
     type: "website",
   },
@@ -52,7 +46,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${cinzel.variable} ${jakarta.variable} ${sinhala.variable} scroll-smooth`}
+      className={`${cinzel.variable} ${jakarta.variable} scroll-smooth`}
     >
       <body className="min-h-screen bg-[#110609] text-[#f6eedb] font-sans antialiased selection:bg-[#d4af37] selection:text-[#110609]">
         {children}

@@ -76,7 +76,7 @@ export default function RoyalDecree() {
 
               <div className="mt-5 pt-3 border-t border-[#d4af37]/20 flex items-center justify-between text-[11px] text-[#fae19c]">
                 <span>Pillar 0{idx + 1}</span>
-                <span className="font-sinhala text-[10px] text-[#d4af37]">කන්ද උඩරට රාජධානිය</span>
+                <span className="text-[10px] text-[#d4af37]">The Kandyan Kingdom</span>
               </div>
             </div>
           );

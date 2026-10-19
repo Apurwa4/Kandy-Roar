@@ -66,8 +66,8 @@ export default function Footer({ onOpenShop }: FooterProps) {
               years of youth leadership, empowerment, and cultural heritage in the heart of the Kandyan Kingdom.
             </p>
 
-            <div className="font-sinhala text-sm text-[#fae19c]">
-              අසව් අසව් අසව් • රාජකීය සමුළුව 7.0
+            <div className="font-heading text-sm text-[#fae19c]">
+              Hear Ye! Hear Ye! Hear Ye! • Royal Gathering 7.0
             </div>
           </div>
 

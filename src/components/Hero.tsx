@@ -98,13 +98,13 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
               </div>
             </div>
 
-            {/* Sinhala Calligraphy Headline */}
+            {/* Royal proclamation headline */}
             <div className="space-y-1 overflow-visible">
-              <div aria-label="අසව් ! අසව් ! අසව් !" className="sinhala-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">
+              <div aria-label="Hear Ye! Hear Ye! Hear Ye!" className="royal-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">
                 {[0, 1, 2].map((word) => (
                   <React.Fragment key={word}>
                     {word > 0 && " "}
-                    <span aria-hidden="true" className="sinhala-wave-word gold-text" style={{ animationDelay: `${word * -2}s` }}>අසව් !</span>
+                    <span aria-hidden="true" className="royal-wave-word gold-text" style={{ animationDelay: `${word * -2}s` }}>Hear Ye!</span>
                   </React.Fragment>
                 ))}
               </div>
@@ -116,7 +116,7 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
 
             {/* Proclamation Copy: Clean and unboxed */}
             <p className="text-sm sm:text-base text-[#f6eedb]/85 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-              The royal gates are opening. Join us for the landmark 7th edition of the flagship Leadership Development Seminar. Answer the royal call, fulfil your <span className="text-[#fae19c] font-semibold">Rajakariya</span>, and inscribe your name in the kingdom&apos;s history.
+              The royal gates are opening. Join us for the landmark 7th edition of the flagship Leadership Development Seminar. Answer the royal call, fulfil your <span className="text-[#fae19c] font-semibold">Royal Duty</span>, and inscribe your name in the kingdom&apos;s history.
             </p>
 
             {/* Event Dates & Realm - Minimalist Tags */}

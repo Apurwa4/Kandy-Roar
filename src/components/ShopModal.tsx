@@ -38,7 +38,7 @@ export default function ShopModal({ isOpen, onClose }: ShopModalProps) {
     {
       id: "tee",
       title: "Royal Proclamation Oversized Tee",
-      subtitle: "'අසව් අසව් අසව්' Folk Calligraphy Edition",
+      subtitle: "'Hear Ye! Hear Ye! Hear Ye!' Royal Lettering Edition",
       desc: "Premium 240 GSM organic cotton featuring traditional drummer & minister folk murals.",
       badge: "Limited Drop",
       icon: Sparkles,
