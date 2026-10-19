@@ -7,6 +7,7 @@ import RoyalDecree from "@/components/RoyalDecree";
 import RoyalRegistrationForm from "@/components/RoyalRegistrationForm";
 import ShopModal from "@/components/ShopModal";
 import Footer from "@/components/Footer";
+import CommunityPhoto from "@/components/CommunityPhoto";
 
 export default function Home() {
   const [shopOpen, setShopOpen] = useState(false);
@@ -39,11 +40,15 @@ export default function Home() {
           onOpenShop={() => setShopOpen(true)}
         />
 
+        <CommunityPhoto kind="group" />
+
         {/* The 4 Royal Pillars of Kandy Roar 7.0 */}
         <RoyalDecree />
 
         {/* The Royal Registration Form Portal */}
         <RoyalRegistrationForm />
+        <CommunityPhoto kind="eb" />
+        <CommunityPhoto kind="members" />
       </main>
 
       {/* Footer */}
