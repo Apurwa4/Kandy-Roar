@@ -1,0 +1,9 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="96" height="20" viewBox="0 0 96 20" fill="none">
+<defs>
+<linearGradient id="gold" x1="0" y1="0" x2="0" y2="20" gradientUnits="userSpaceOnUse"><stop stop-color="#fff0b0"/><stop offset=".3" stop-color="#d7b55d"/><stop offset=".65" stop-color="#95641f"/><stop offset=".85" stop-color="#e3c779"/><stop offset="1" stop-color="#a77930"/></linearGradient>
+<g id="vine" stroke-linecap="round" stroke-linejoin="round">
+<path d="M-2 13C9 13 11 3 22 4C33 5 29 17 21 15C16 14 17 9 21 9M27 10C37 12 36 3 46 5M46 5C42 5 40 7 40 10C45 11 48 8 46 5M28 13C35 13 34 18 40 17C39 13 36 11 32 12M4 11C6 3 12 1 16 3C13 8 10 10 4 11M49 13C60 13 62 3 73 4C84 5 80 17 72 15C67 14 68 9 72 9M78 10C88 12 87 3 97 5M97 5C93 5 91 7 91 10C96 11 99 8 97 5M79 13C86 13 85 18 91 17C90 13 87 11 83 12M55 11C57 3 63 1 67 3C64 8 61 10 55 11"/>
+<path d="M48 6C44 9 44 12 48 15C52 12 52 9 48 6Z"/><path d="M0 1H96M0 19H96" opacity=".55"/>
+</g></defs>
+<g id="ornament"><use href="#vine" transform="translate(0 .7)" stroke="#201408" stroke-width="2" fill="#201408" opacity=".75"/><use href="#vine" stroke="url(#gold)" stroke-width=".85" fill="url(#gold)"/></g>
+</svg>

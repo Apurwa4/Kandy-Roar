@@ -49,13 +49,19 @@ export default function CommunityPhoto({ kind }: { kind: keyof typeof stories })
       animationFrame = 0;
       if (motionPreference.matches) {
         frame.style.removeProperty("--photo-drift");
+        frame.style.removeProperty("--photo-scale");
         return;
       }
       const bounds = section.getBoundingClientRect();
       if (bounds.bottom < 0 || bounds.top > window.innerHeight) return;
-      const progress = (window.innerHeight / 2 - (bounds.top + bounds.height / 2)) /
-        ((window.innerHeight + bounds.height) / 2);
+      // Use the untransformed frame position so scaling cannot feed back into its measurement.
+      const frameCenter = bounds.top + frame.offsetTop + frame.offsetHeight / 2;
+      const progress = (window.innerHeight / 2 - frameCenter) /
+        ((window.innerHeight + frame.offsetHeight) / 2);
+      const distance = Math.min(1, Math.abs(progress));
+      const prominence = (1 - distance * distance) ** 2;
       frame.style.setProperty("--photo-drift", `${Math.max(-1, Math.min(1, progress)) * -22}px`);
+      frame.style.setProperty("--photo-scale", `${0.94 + prominence * 0.075}`);
     };
     const scheduleUpdate = () => {
       if (!animationFrame) animationFrame = window.requestAnimationFrame(update);
