@@ -43,9 +43,6 @@ export default function Navbar({ onOpenShop }: NavbarProps) {
                 <span className="font-heading font-black tracking-widest text-lg sm:text-xl text-[#f6eedb] group-hover:text-[#fae19c] transition-colors">
                   KANDY ROAR <span className="text-[#d4af37]">7.0</span>
                 </span>
-                <span className="hidden sm:inline-flex text-[10px] font-bold uppercase tracking-wider px-2 py-0.5 rounded-full bg-[#580b1a] text-[#fae19c] border border-[#d4af37]/40">
-                  10 Years
-                </span>
               </div>
               <span className="text-[11px] text-[#d4af37]/80 tracking-wider uppercase font-medium">
                 AIESEC in Kandy • LEADERSHIP DEVELOPMENT SEMINAR
