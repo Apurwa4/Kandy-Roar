@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import confetti from "canvas-confetti";
+import { createRegistrationReport, type RegistrationReport } from "../lib/registration-report";
 import {
   ScrollText,
   Send,
@@ -16,6 +17,7 @@ import {
   Copy,
   Check,
   RefreshCw,
+  Download,
 } from "lucide-react";
 
 export default function RoyalRegistrationForm() {
@@ -66,6 +68,7 @@ export default function RoyalRegistrationForm() {
     entity: string;
     email: string;
     googleSheetStatus?: string;
+    report: RegistrationReport;
   } | null>(null);
 
   const [copied, setCopied] = useState(false);
@@ -182,6 +185,27 @@ export default function RoyalRegistrationForm() {
         entity: formData.entity === "Other" ? formData.entityOther : formData.entity,
         email: formData.email,
         googleSheetStatus: data.googleSheetStatus,
+        report: {
+          registrationId: data.registrationId,
+          submittedAt: new Date().toLocaleString("en-GB", { timeZone: "Asia/Colombo" }) + " (Sri Lanka time)",
+          details: [
+            ["Full name", formData.fullName.trim()],
+            ["Email", formData.email.trim()],
+            ["Phone / WhatsApp", formData.phone.trim()],
+            ["Date of birth", formData.dob],
+            ["Entity", formData.entity === "Other" ? formData.entityOther.trim() : formData.entity],
+            ["Faculty", formData.faculty === "Other" ? formData.facultyOther.trim() : formData.faculty],
+            ["Front Office", formData.frontOffice],
+            ["Back Office", formData.backOffice],
+            ["Position", formData.position],
+            ["NIC number", formData.nic.trim()],
+            ["University registration number", formData.uniRegNo.trim()],
+            ["Address", formData.address.trim()],
+            ["Emergency contact name", formData.emergencyName.trim()],
+            ["Emergency contact phone", formData.emergencyPhone.trim()],
+            ["Message", formData.message.trim()],
+          ],
+        },
       });
 
       setFormData({
@@ -209,6 +233,19 @@ export default function RoyalRegistrationForm() {
     } finally {
       setIsSubmitting(false);
     }
+  };
+
+  const handleDownloadReport = () => {
+    if (!successData) return;
+    const blob = new Blob([createRegistrationReport(successData.report)], { type: "text/html;charset=utf-8" });
+    const url = URL.createObjectURL(blob);
+    const link = document.createElement("a");
+    link.href = url;
+    link.download = `Kandy-Roar-${successData.registrationId}-Summary.html`;
+    document.body.appendChild(link);
+    link.click();
+    link.remove();
+    setTimeout(() => URL.revokeObjectURL(url), 60_000);
   };
 
   const handleCopyId = () => {
@@ -241,19 +278,19 @@ export default function RoyalRegistrationForm() {
           {/* Royal Seal Watermark with Lion Emblem */}
           <div className="absolute -top-8 -right-8 w-44 h-44 opacity-10 pointer-events-none">
             <Image
-              src="/images/kandy-roar-lion-emblem.png"
-              alt="Watermark"
+              src="/images/kandy-roar-logo-gold.png"
+              alt=""
               fill
               className="object-contain"
             />
           </div>
 
-          <div className="w-16 h-16 rounded-full bg-gradient-to-tr from-[#580b1a] to-[#750f24] text-[#fae19c] mx-auto flex items-center justify-center p-3 mb-4 shadow-lg border-2 border-[#d4af37]">
+          <div className="w-32 h-20 rounded-2xl bg-gradient-to-tr from-[#580b1a] to-[#750f24] text-[#fae19c] mx-auto flex items-center justify-center p-3 mb-4 shadow-lg border-2 border-[#d4af37]">
             <Image
-              src="/images/kandy-roar-lion-emblem.png"
-              alt="Lion Emblem"
-              width={40}
-              height={40}
+              src="/images/kandy-roar-logo-gold.png"
+              alt="Kandy Roar logo"
+              width={96}
+              height={51}
               className="object-contain"
             />
           </div>
@@ -273,13 +310,14 @@ export default function RoyalRegistrationForm() {
 
           {/* Royal Certificate Card */}
           <div className="my-6 p-5 sm:p-6 rounded-2xl bg-white/80 border-2 border-[#c9b382] shadow-inner max-w-md mx-auto text-left relative">
-            <div className="flex justify-between items-start border-b border-[#c9b382]/50 pb-3 mb-3">
+            <div className="flex flex-col sm:flex-row gap-3 justify-between items-start border-b border-[#c9b382]/50 pb-3 mb-3">
               <div className="flex items-center gap-2.5">
-                <div className="relative w-9 h-9">
+                <div className="relative w-16 h-9 shrink-0">
                   <Image
-                    src="/images/kandy-roar-lion-emblem.png"
-                    alt="Emblem"
+                    src="/images/kandy-roar-logo-gold.png"
+                    alt="Kandy Roar logo"
                     fill
+                    sizes="64px"
                     className="object-contain"
                   />
                 </div>
@@ -288,7 +326,7 @@ export default function RoyalRegistrationForm() {
                   <div className="font-heading font-black text-lg text-[#210408]">KANDY ROAR 7.0</div>
                 </div>
               </div>
-              <div className="text-right">
+              <div className="sm:text-right">
                 <div className="text-[10px] uppercase tracking-wider text-[#8a650c]">Registry Code</div>
                 <div className="font-mono font-bold text-sm text-[#750f24]">{successData.registrationId}</div>
               </div>
@@ -314,10 +352,18 @@ export default function RoyalRegistrationForm() {
           </div>
 
           <div className="text-xs text-[#5a423f] max-w-md mx-auto mb-6 bg-[#eedfc5]/60 p-2.5 rounded-xl border border-[#c9b382]">
-            <span>Please take a screenshot of your Royal Registry Code for accreditation at the gates.</span>
+            <span>Download your registration summary to keep your Royal Registry Code and submitted details. Open the downloaded report to print it or save it as a PDF.</span>
           </div>
 
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
+            <button
+              type="button"
+              onClick={handleDownloadReport}
+              className="gold-btn px-6 py-2.5 rounded-full text-xs uppercase font-extrabold flex items-center gap-2"
+            >
+              <Download className="w-3.5 h-3.5" />
+              <span>Download Summary Report</span>
+            </button>
             <button
               onClick={() => { setStep(0); setSuccessData(null); }}
               className="gold-btn px-6 py-2.5 rounded-full text-xs uppercase font-extrabold flex items-center gap-2"

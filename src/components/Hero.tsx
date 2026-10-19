@@ -33,7 +33,7 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
   });
 
   useEffect(() => {
-    const targetDate = new Date(new Date().getFullYear(), 9, 20, 0, 0, 0);
+    const targetDate = new Date("2026-10-24T00:00:00+05:30");
 
     const updateTimer = () => {
       const now = new Date();
@@ -136,7 +136,7 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
               <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-3 px-5 rounded-2xl bg-[#1c050b] border border-[#d4af37]/35 shadow-xl">
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#fae19c]">
                   <Clock className="w-4 h-4 text-[#d4af37]" />
-                  <span>{timeLeft.isLive ? "Registrations Open Now" : "Registrations Open: 20th Oct"}</span>
+                  <span>{timeLeft.isLive ? "Registrations Open Now" : "Registrations Open: 24th Oct"}</span>
                 </div>
 
                 {!timeLeft.isLive && (
