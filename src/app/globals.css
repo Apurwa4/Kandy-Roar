@@ -108,6 +108,22 @@ body {
   box-decoration-break: clone;
 }
 
+.sinhala-wave-word {
+  display: inline-block;
+  white-space: nowrap;
+  padding-block: 0.12em;
+  animation: sinhalaWave 9s ease-in-out infinite;
+}
+
+@keyframes sinhalaWave {
+  0%, 100% { transform: translateY(2px); }
+  50% { transform: translateY(-5px); }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sinhala-wave-word { animation: none; }
+}
+
 /* Subtle float animation */
 @keyframes royalFloat {
   0%, 100% {

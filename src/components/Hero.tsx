@@ -99,8 +99,13 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
 
             {/* Sinhala Calligraphy Headline */}
             <div className="space-y-1 overflow-visible">
-              <div className="sinhala-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide gold-text">
-                අසව් ! අසව් ! අසව් !
+              <div aria-label="අසව් ! අසව් ! අසව් !" className="sinhala-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">
+                {[0, 1, 2].map((word) => (
+                  <React.Fragment key={word}>
+                    {word > 0 && " "}
+                    <span aria-hidden="true" className="sinhala-wave-word gold-text" style={{ animationDelay: `${word * -2}s` }}>අසව් !</span>
+                  </React.Fragment>
+                ))}
               </div>
               <div className="flex items-center justify-center lg:justify-start gap-2 text-[11px] tracking-widest uppercase font-mono text-[#d4af37]/90 font-medium">
                 <Volume2 className="w-3.5 h-3.5 text-[#d4af37]" />
