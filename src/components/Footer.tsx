@@ -67,7 +67,7 @@ export default function Footer({ onOpenShop }: FooterProps) {
             </p>
 
             <div className="font-heading text-sm text-[#fae19c]">
-              Hear Ye! Hear Ye! Hear Ye! • Royal Gathering 7.0
+              The Gates Are Open • Royal Gathering 7.0
             </div>
           </div>
 

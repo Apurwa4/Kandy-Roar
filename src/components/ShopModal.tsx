@@ -38,7 +38,7 @@ export default function ShopModal({ isOpen, onClose }: ShopModalProps) {
     {
       id: "tee",
       title: "Royal Proclamation Oversized Tee",
-      subtitle: "'Hear Ye! Hear Ye! Hear Ye!' Royal Lettering Edition",
+      subtitle: "'The Gates Are Open' Royal Lettering Edition",
       desc: "Premium 240 GSM organic cotton featuring traditional drummer & minister folk murals.",
       badge: "Limited Drop",
       icon: Sparkles,

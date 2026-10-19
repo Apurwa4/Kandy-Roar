@@ -100,11 +100,11 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
 
             {/* Royal proclamation headline */}
             <div className="space-y-1 overflow-visible">
-              <div aria-label="Hear Ye! Hear Ye! Hear Ye!" className="royal-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">
-                {[0, 1, 2].map((word) => (
-                  <React.Fragment key={word}>
-                    {word > 0 && " "}
-                    <span aria-hidden="true" className="royal-wave-word gold-text" style={{ animationDelay: `${word * -2}s` }}>Hear Ye!</span>
+              <div aria-label="The Gates Are Open" className="royal-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">
+                {["The Gates", "Are Open"].map((phrase, index) => (
+                  <React.Fragment key={phrase}>
+                    {index > 0 && " "}
+                    <span aria-hidden="true" className="royal-wave-word gold-text" style={{ animationDelay: `${index * -2}s` }}>{phrase}</span>
                   </React.Fragment>
                 ))}
               </div>
