@@ -30,7 +30,7 @@ export default function Navbar({ onOpenShop }: NavbarProps) {
           >
             <div className="relative w-16 sm:w-20 h-12 shrink-0 group-hover:scale-105 transition-transform">
                 <Image
-                  src="/images/kandy-roar-logo-gold.png"
+                  src="/images/kandy-roar-logo-transparent.png"
                   alt="Kandy Roar Official Logo"
                   fill
                   sizes="(min-width: 640px) 80px, 64px"

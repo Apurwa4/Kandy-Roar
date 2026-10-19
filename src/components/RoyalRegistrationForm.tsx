@@ -278,7 +278,7 @@ export default function RoyalRegistrationForm() {
           {/* Royal Seal Watermark with Lion Emblem */}
           <div className="absolute -top-8 -right-8 w-44 h-44 opacity-10 pointer-events-none">
             <Image
-              src="/images/kandy-roar-logo-gold.png"
+              src="/images/kandy-roar-logo-transparent.png"
               alt=""
               fill
               className="object-contain"
@@ -287,7 +287,7 @@ export default function RoyalRegistrationForm() {
 
           <div className="w-32 h-20 rounded-2xl bg-gradient-to-tr from-[#580b1a] to-[#750f24] text-[#fae19c] mx-auto flex items-center justify-center p-3 mb-4 shadow-lg border-2 border-[#d4af37]">
             <Image
-              src="/images/kandy-roar-logo-gold.png"
+              src="/images/kandy-roar-logo-transparent.png"
               alt="Kandy Roar logo"
               width={96}
               height={51}
@@ -314,7 +314,7 @@ export default function RoyalRegistrationForm() {
               <div className="flex items-center gap-2.5">
                 <div className="relative w-16 h-9 shrink-0">
                   <Image
-                    src="/images/kandy-roar-logo-gold.png"
+                    src="/images/kandy-roar-logo-transparent.png"
                     alt="Kandy Roar logo"
                     fill
                     sizes="64px"

@@ -73,7 +73,7 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#23040a] border border-[#d4af37]/40 shadow-md">
               <div className="relative w-10 h-6 shrink-0">
                 <Image
-                  src="/images/kandy-roar-logo-gold.png"
+                  src="/images/kandy-roar-logo-transparent.png"
                   alt="Kandy Roar logo"
                   fill
                   sizes="40px"
@@ -89,7 +89,7 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
             <div className="pt-1">
               <div className="relative w-full max-w-sm sm:max-w-md h-20 sm:h-24 mx-auto lg:mx-0">
                 <Image
-                  src="/images/kandy-roar-logo-gold.png"
+                  src="/images/kandy-roar-logo-transparent.png"
                   alt="Kandy Roar Leadership Development Seminar 2026"
                   fill
                   className="object-contain object-center lg:object-left"
