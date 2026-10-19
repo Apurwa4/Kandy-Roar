@@ -24,7 +24,6 @@ export async function GET() {
 
 export async function POST(req: NextRequest) {
   try {
-    ensureStorage();
     const body = await req.json();
 
     const requiredFields = [
@@ -73,29 +72,57 @@ export async function POST(req: NextRequest) {
       message: body.message?.trim() || "",
     };
 
-    // 1. Save local backup copy on the server
-    try {
-      const raw = fs.readFileSync(DATA_FILE, "utf8");
-      const currentList = JSON.parse(raw);
-      currentList.push(newRecord);
-      fs.writeFileSync(DATA_FILE, JSON.stringify(currentList, null, 2), "utf8");
-    } catch (fsErr) {
-      console.error("Local file write error:", fsErr);
+    const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL?.trim();
+    const isVercel = process.env.VERCEL === "1";
+
+    // Vercel has no persistent local filesystem. Sheets must confirm the save.
+    if (isVercel && !webhookUrl) {
+      return NextResponse.json(
+        { success: false, error: "Registration is temporarily unavailable. Please contact the organizing committee." },
+        { status: 503 }
+      );
     }
 
-    // 2. Forward to your Private Google Sheets Webhook if configured
-    const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL;
-
-    if (webhookUrl && webhookUrl.startsWith("http")) {
+    if (webhookUrl) {
       try {
-        await fetch(webhookUrl, {
+        const response = await fetch(webhookUrl, {
           method: "POST",
           headers: { "Content-Type": "text/plain;charset=utf-8" },
           body: JSON.stringify(newRecord),
           redirect: "follow",
+          signal: AbortSignal.timeout(15_000),
         });
-      } catch (sheetErr) {
-        console.error("Google Sheets forward error:", sheetErr);
+        const result = await response.json();
+        if (!response.ok || result.error || !(
+          result.success === true || result.status === "success" || result.result === "success"
+        )) {
+          throw new Error("Google Sheets did not confirm the save.");
+        }
+      } catch {
+        // Do not log webhook URLs or delegate details.
+        console.error("Google Sheets registration save was not confirmed.");
+        return NextResponse.json(
+          { success: false, error: "We could not confirm your registration was saved. Please contact the organizing committee before trying again." },
+          { status: 502 }
+        );
+      }
+    }
+
+    // Keep a local copy only when running outside Vercel.
+    if (!isVercel) {
+      try {
+        ensureStorage();
+        const currentList = JSON.parse(fs.readFileSync(DATA_FILE, "utf8"));
+        currentList.push(newRecord);
+        fs.writeFileSync(DATA_FILE, JSON.stringify(currentList, null, 2), "utf8");
+      } catch {
+        console.error("Local registration backup could not be saved.");
+        if (!webhookUrl) {
+          return NextResponse.json(
+            { success: false, error: "Your registration could not be saved. Please try again later." },
+            { status: 500 }
+          );
+        }
       }
     }
 
