@@ -23,21 +23,20 @@ export default function Navbar({ onOpenShop }: NavbarProps) {
     <header className="fixed top-0 left-0 right-0 z-50 bg-[#16060c]/90 backdrop-blur-md border-b border-[#d4af37]/25 shadow-xl transition-all">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="flex items-center justify-between h-20">
-          {/* Logo & Brand using official Kandy Roar Lion Emblem */}
+          {/* Logo & Brand using the full official Kandy Roar logo */}
           <div
             onClick={() => scrollToSection("hero")}
             className="flex items-center gap-3.5 cursor-pointer group"
           >
-            <div className="relative w-11 h-11 rounded-full p-0.5 bg-gradient-to-br from-[#d4af37] via-[#aa7c11] to-[#580b1a] shadow-md shadow-[#d4af37]/20 group-hover:scale-105 transition-transform flex items-center justify-center overflow-hidden">
-              <div className="relative w-full h-full rounded-full bg-[#1c050b] flex items-center justify-center p-1">
+            <div className="relative w-16 sm:w-20 h-12 shrink-0 group-hover:scale-105 transition-transform">
                 <Image
-                  src="/images/kandy-roar-lion-emblem.png"
-                  alt="Kandy Roar Official Lion Emblem"
+                  src="/images/kandy-roar-logo-gold.png"
+                  alt="Kandy Roar Official Logo"
                   fill
-                  className="object-contain p-1"
+                  sizes="(min-width: 640px) 80px, 64px"
+                  className="object-contain"
                   priority
                 />
-              </div>
             </div>
             <div className="flex flex-col">
               <div className="flex items-center gap-2">
