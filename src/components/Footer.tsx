@@ -41,15 +41,14 @@ export default function Footer({ onOpenShop }: FooterProps) {
           {/* Col 1: Brand & Proclamation using official Kandy Roar logo */}
           <div className="md:col-span-7 lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
-              <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-[#d4af37] via-[#aa7c11] to-[#580b1a] p-0.5 flex items-center justify-center overflow-hidden">
-                <div className="relative w-full h-full rounded-full bg-[#1c050b] flex items-center justify-center p-1">
-                  <Image
-                    src="/images/kandy-roar-lion-emblem.png"
-                    alt="Kandy Roar Lion"
-                    fill
-                    className="object-contain p-1"
-                  />
-                </div>
+              <div className="relative w-20 h-12 shrink-0">
+                <Image
+                  src="/images/kandy-roar-logo-transparent.png"
+                  alt="Kandy Roar logo"
+                  fill
+                  sizes="80px"
+                  className="object-contain"
+                />
               </div>
               <div>
                 <div className="font-heading font-black text-xl text-[#ffffff] tracking-wider">
