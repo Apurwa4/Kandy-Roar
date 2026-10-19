@@ -1,37 +1,37 @@
 "use client";
 
 import React from "react";
-import { Shield, ScrollText, Award, Users, Compass, Sparkles } from "lucide-react";
+import { Shield, Award, Users, Compass, Music } from "lucide-react";
 
 export default function RoyalDecree() {
   const pillars = [
     {
-      icon: Shield,
-      title: "Rajakariya • Royal Duty",
-      subtitle: "Youth Leadership Seminar",
+      icon: Users,
+      title: "Interactive Sessions",
+      subtitle: "Learn, Share & Lead",
       description:
-        "Answering the call to lead. Deep-dive leadership development sessions designed to hone critical skills for Front Office and Back Office warriors.",
-    },
-    {
-      icon: ScrollText,
-      title: "The King's Council",
-      subtitle: "Inspirational Keynotes",
-      description:
-        "Learn from seasoned AIESEC alumni, past LCPs, and visionary guest speakers who have transformed kingdoms of their own.",
+        "Build your leadership skills through hands-on activities, meaningful discussions, and shared learning with fellow delegates.",
     },
     {
       icon: Award,
-      title: "10 Glorious Years",
-      subtitle: "AIESEC in Kandy Legacy",
+      title: "Nova 26'",
+      subtitle: "The Award Ceremony",
       description:
-        "Celebrating a decade of building leaders who bridge cultures, drive cross-cultural exchange, and champion social impact.",
+        "Celebrate achievements, recognize dedication, and honour the people who make AIESEC in Kandy shine.",
     },
     {
-      icon: Users,
-      title: "Fellowship of the Realms",
-      subtitle: "Gathering of Entities",
+      icon: Compass,
+      title: "OBT",
+      subtitle: "Outbound Training",
       description:
-        "Welcoming delegates from Kandy, Jaffna, Vavuniya, and beyond for an unforgettable two-day residential brotherhood and gala night.",
+        "Step outdoors for team challenges that build trust, strengthen collaboration, and put your leadership into action.",
+    },
+    {
+      icon: Music,
+      title: "DJ Party",
+      subtitle: "Music, Dance & Celebration",
+      description:
+        "Celebrate together, hit the dance floor, and make unforgettable memories with fellow delegates at the DJ party.",
     },
   ];
 

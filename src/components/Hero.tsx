@@ -71,11 +71,12 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
             
             {/* 10th Anniversary Pill */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#23040a] border border-[#d4af37]/40 shadow-md">
-              <div className="relative w-4 h-4">
+              <div className="relative w-10 h-6 shrink-0">
                 <Image
-                  src="/images/kandy-roar-lion-emblem.png"
-                  alt="Lion"
+                  src="/images/kandy-roar-logo-gold.png"
+                  alt="Kandy Roar logo"
                   fill
+                  sizes="40px"
                   className="object-contain"
                 />
               </div>

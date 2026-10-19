@@ -2,13 +2,30 @@
 
 import React from "react";
 import Image from "next/image";
-import { ScrollText, FileCheck2, ShoppingBag, Mail, MapPin } from "lucide-react";
+import { ScrollText, FileCheck2, ShoppingBag, Mail, Phone } from "lucide-react";
 
 interface FooterProps {
   onOpenShop: () => void;
 }
 
 export default function Footer({ onOpenShop }: FooterProps) {
+  const delegateContacts = [
+    {
+      name: "Kavishka",
+      photo: "/images/kavishka.jpeg",
+      email: "kavishkaaushadi@aiesec.net",
+      phone: "076 220 6380",
+      phoneHref: "tel:+94762206380",
+    },
+    {
+      name: "Dilshini",
+      photo: "/images/dilshini.jpeg",
+      email: "dilshibandara@aiesec.net",
+      phone: "076 289 9108",
+      phoneHref: "tel:+94762899108",
+    },
+  ];
+
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: "smooth" });
   };
@@ -22,7 +39,7 @@ export default function Footer({ onOpenShop }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#d4af37]/20">
           
           {/* Col 1: Brand & Proclamation using official Kandy Roar logo */}
-          <div className="md:col-span-5 space-y-4">
+          <div className="md:col-span-7 lg:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <div className="relative w-12 h-12 rounded-full bg-gradient-to-br from-[#d4af37] via-[#aa7c11] to-[#580b1a] p-0.5 flex items-center justify-center overflow-hidden">
                 <div className="relative w-full h-full rounded-full bg-[#1c050b] flex items-center justify-center p-1">
@@ -55,7 +72,7 @@ export default function Footer({ onOpenShop }: FooterProps) {
           </div>
 
           {/* Col 2: Navigation */}
-          <div className="md:col-span-3 space-y-3">
+          <div className="md:col-span-5 lg:col-span-3 space-y-3">
             <div className="text-xs font-bold uppercase tracking-widest text-[#d4af37]">
               Royal Portals
             </div>
@@ -90,28 +107,50 @@ export default function Footer({ onOpenShop }: FooterProps) {
             </ul>
           </div>
 
-          {/* Col 3: Royal Messengers & Contact */}
-          <div className="md:col-span-4 space-y-3">
+          {/* Col 3: Delegate contacts */}
+          <div className="md:col-span-12 lg:col-span-4 min-w-0 space-y-4">
             <div className="text-xs font-bold uppercase tracking-widest text-[#d4af37]">
-              Royal Messengers
+              Meet Your Royal Messengers
             </div>
-            <div className="space-y-2.5 text-xs text-[#f6eedb]/80">
-              <div className="flex items-center gap-2">
-                <Mail className="w-4 h-4 text-[#d4af37]" />
-                <a
-                  href="mailto:apurwa.fernando@aiesec.net"
-                  className="hover:text-[#fae19c] transition-colors"
+            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+              {delegateContacts.map((contact) => (
+                <div
+                  key={contact.email}
+                  className="flex items-start gap-3 rounded-2xl border border-[#d4af37]/25 bg-[#23040a]/60 p-4"
                 >
-                  apurwa.fernando@aiesec.net
-                </a>
-              </div>
-              <div className="flex items-center gap-2">
-                <MapPin className="w-4 h-4 text-[#d4af37]" />
-                <span>Kingdom of Kandy, Sri Lanka</span>
-              </div>
-              <div className="pt-2 text-[11px] text-[#f6eedb]/60">
-                Tentative Gathering Dates: <strong>9th–10th January</strong>
-              </div>
+                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-[#d4af37]/50">
+                    <Image
+                      src={contact.photo}
+                      alt={contact.name}
+                      fill
+                      sizes="64px"
+                      className="object-cover object-top"
+                    />
+                  </div>
+                  <div className="min-w-0 space-y-1.5">
+                    <h3 className="font-heading font-bold text-base text-[#fae19c]">
+                      {contact.name}
+                    </h3>
+                    <p className="text-[10px] font-semibold uppercase tracking-wider text-[#d4af37]">
+                      Royal Messengers
+                    </p>
+                    <a
+                      href={`mailto:${contact.email}`}
+                      className="flex items-start gap-2 text-xs text-[#f6eedb]/80 hover:text-[#fae19c] transition-colors"
+                    >
+                      <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4af37]" />
+                      <span className="break-all">{contact.email}</span>
+                    </a>
+                    <a
+                      href={contact.phoneHref}
+                      className="flex items-center gap-2 text-xs text-[#f6eedb]/80 hover:text-[#fae19c] transition-colors"
+                    >
+                      <Phone className="h-3.5 w-3.5 shrink-0 text-[#d4af37]" />
+                      <span>{contact.phone}</span>
+                    </a>
+                  </div>
+                </div>
+              ))}
             </div>
           </div>
 
