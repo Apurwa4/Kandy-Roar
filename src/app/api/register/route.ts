@@ -74,6 +74,7 @@ export async function POST(req: NextRequest) {
 
     const webhookUrl = process.env.GOOGLE_SHEETS_WEBHOOK_URL?.trim();
     const isVercel = process.env.VERCEL === "1";
+    let emailStatus: "sent" | "failed" | "quota_exceeded" | undefined;
 
     // Vercel has no persistent local filesystem. Sheets must confirm the save.
     if (isVercel && !webhookUrl) {
@@ -97,6 +98,9 @@ export async function POST(req: NextRequest) {
           result.success === true || result.status === "success" || result.result === "success"
         )) {
           throw new Error("Google Sheets did not confirm the save.");
+        }
+        if (["sent", "failed", "quota_exceeded"].includes(result.emailStatus)) {
+          emailStatus = result.emailStatus;
         }
       } catch {
         // Do not log webhook URLs or delegate details.
@@ -130,6 +134,7 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({
       success: true,
       registrationId: regId,
+      emailStatus,
     });
   } catch (error) {
     console.error("Registration submission error:", error);

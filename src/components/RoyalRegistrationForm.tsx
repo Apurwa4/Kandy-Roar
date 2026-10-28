@@ -68,6 +68,7 @@ export default function RoyalRegistrationForm() {
     entity: string;
     email: string;
     googleSheetStatus?: string;
+    emailStatus?: "sent" | "failed" | "quota_exceeded";
     report: RegistrationReport;
   } | null>(null);
 
@@ -185,6 +186,7 @@ export default function RoyalRegistrationForm() {
         entity: formData.entity === "Other" ? formData.entityOther : formData.entity,
         email: formData.email,
         googleSheetStatus: data.googleSheetStatus,
+        emailStatus: data.emailStatus,
         report: {
           registrationId: data.registrationId,
           submittedAt: new Date().toLocaleString("en-GB", { timeZone: "Asia/Colombo" }) + " (Sri Lanka time)",
@@ -307,6 +309,13 @@ export default function RoyalRegistrationForm() {
             Welcome to the gathering, <strong className="text-[#750f24]">{successData.fullName}</strong>.
             Your royal inscription has been permanently entered into the records of the Kingdom of Kandy.
           </p>
+          {successData.emailStatus && (
+            <p role="status" className="text-sm text-[#4a2e2b] max-w-lg mx-auto mt-3 leading-relaxed">
+              {successData.emailStatus === "sent"
+                ? `A confirmation email has been sent to ${successData.email}. Please check your inbox and Spam folder.`
+                : "Your registration is saved, but we could not send the confirmation email. Download your summary below and keep your registration code. You do not need to register again."}
+            </p>
+          )}
 
           {/* Royal Certificate Card */}
           <div className="my-6 p-5 sm:p-6 rounded-2xl bg-white/80 border-2 border-[#c9b382] shadow-inner max-w-md mx-auto text-left relative">
