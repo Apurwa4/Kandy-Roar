@@ -20,7 +20,11 @@ function sendRegistrationConfirmation(data) {
       "Your registration for Kandy Roar 7.0 has been recorded!",
       "",
       "Registration code: " + code,
+      "Villager name: " + name,
       "Entity: " + entity,
+      "Email: " + email,
+      "Gathering dates: 9th–10th January (Tentative)",
+      "Royal Duty Approved",
       "",
       "Keep this email and your registration code for reference.",
       "",
@@ -39,21 +43,7 @@ function sendRegistrationConfirmation(data) {
       name: "Kandy Roar 7.0 | AIESEC in Kandy",
       replyTo: "kavishkaaushadi@aiesec.net",
       body: body,
-      htmlBody:
-        '<div style="max-width:600px;margin:auto;font-family:Arial,sans-serif;color:#210408;line-height:1.7">' +
-        '<h1 style="background:#580b1a;color:#f1cf6b;padding:24px">KANDY ROAR 7.0</h1>' +
-        '<div style="padding:0 24px 24px">' +
-        "<h2>Your Registration Is Confirmed!</h2>" +
-        "<p>Hello " + escapeEmailHtml(name) + ",</p>" +
-        "<p>Your registration for Kandy Roar 7.0 has been recorded.</p>" +
-        '<p style="background:#f4eee3;padding:16px"><strong>Registration code: ' + escapeEmailHtml(code) +
-        "</strong><br>Entity: " + escapeEmailHtml(entity) + "</p>" +
-        "<p>Keep this email and your registration code for reference.</p>" +
-        "<p>For questions, contact our Royal Messengers:<br>" +
-        '<a href="mailto:kavishkaaushadi@aiesec.net">Kavishka</a> · 076 220 6380<br>' +
-        '<a href="mailto:dilshibandara@aiesec.net">Dilshini</a> · 076 289 9108</p>' +
-        "<p>See you at the royal gathering!<br>Kandy Roar 7.0 Organizing Committee<br>AIESEC in Kandy</p>" +
-        "</div></div>",
+      htmlBody: buildRegistrationEmailHtml(data),
     });
     return "sent";
   } catch (_) {
@@ -61,6 +51,77 @@ function sendRegistrationConfirmation(data) {
     console.error("Registration saved, but confirmation email could not be sent.");
     return "failed";
   }
+}
+
+function buildRegistrationEmailHtml(data) {
+  const name = escapeEmailHtml(String(data.fullName || "Delegate").trim());
+  const code = escapeEmailHtml(String(data.id || "").trim());
+  const entity = escapeEmailHtml(String(data.entity || "").trim());
+  const email = escapeEmailHtml(String(data.email || "").trim());
+  const logoUrl = "https://kandy-roar-7.vercel.app/images/kandy-roar-logo-transparent.png";
+
+  // Tables and inline styles work without JavaScript in email clients.
+  return `<!doctype html>
+<html lang="en">
+<head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"></head>
+<body style="margin:0;padding:0;background-color:#f7f1e5;">
+  <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="background-color:#f7f1e5;font-family:Arial,Helvetica,sans-serif;color:#2b1810;">
+    <tr><td align="center" style="padding:24px 12px;">
+      <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="max-width:640px;">
+        <tr><td align="center" style="padding:24px;background-color:#580b1a;border-radius:18px 18px 0 0;">
+          <h1 style="margin:0;font-size:26px;color:#f1cf6b;">KANDY ROAR 7.0</h1>
+          <p style="margin:8px 0 0;font-size:13px;color:#fae19c;">AIESEC in Kandy</p>
+        </td></tr>
+        <tr><td style="padding:24px 16px;background-color:#fffdf8;">
+          <h2 style="margin:0 0 16px;font-size:23px;color:#750f24;">Your Royal Registration Is Confirmed!</h2>
+          <p style="margin:0 0 12px;line-height:1.7;">Hello ${name},</p>
+          <p style="margin:0 0 24px;line-height:1.7;">Your registration has been recorded. Here is your delegate pass for the royal gathering.</p>
+
+          <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border:2px solid #c9b382;border-radius:18px;background-color:#fffefa;">
+            <tr><td style="padding:20px 16px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
+                <tr>
+                  <td width="90" valign="middle" style="padding-right:12px;">
+                    <img src="${logoUrl}" width="90" height="48" alt="Kandy Roar" style="display:block;border:0;width:90px;height:48px;">
+                  </td>
+                  <td valign="middle">
+                    <p style="margin:0 0 4px;font-size:12px;font-weight:bold;letter-spacing:1px;color:#8a650c;">DELEGATE PASS</p>
+                    <p style="margin:0;font-size:22px;font-weight:bold;color:#210408;">KANDY ROAR 7.0</p>
+                  </td>
+                </tr>
+                <tr><td colspan="2" style="padding-top:16px;">
+                  <p style="margin:0 0 4px;font-size:11px;letter-spacing:1px;color:#8a650c;">REGISTRY CODE</p>
+                  <p style="margin:0;font-size:24px;font-weight:bold;color:#750f24;">${code}</p>
+                </td></tr>
+              </table>
+            </td></tr>
+            <tr><td style="padding:0 16px;">
+              <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0" style="border-top:1px solid #d9ccaa;border-bottom:1px solid #d9ccaa;">
+                <tr><td style="padding:18px 0;font-size:15px;line-height:1.8;overflow-wrap:anywhere;word-break:break-word;">
+                  <p style="margin:0 0 8px;"><strong>Villager Name:</strong> ${name}</p>
+                  <p style="margin:0 0 8px;"><strong>Kingdom / Entity:</strong> ${entity}</p>
+                  <p style="margin:0 0 8px;"><strong>Royal Messenger:</strong> ${email}</p>
+                  <p style="margin:0;"><strong>Gathering Dates:</strong> 9th–10th January (Tentative)</p>
+                </td></tr>
+              </table>
+            </td></tr>
+            <tr><td style="padding:16px;font-size:13px;font-weight:bold;color:#750f24;">Royal Duty Approved</td></tr>
+          </table>
+
+          <p style="margin:24px 0 16px;line-height:1.7;">Keep this email and your registration code for reference.</p>
+          <p style="margin:0 0 12px;font-weight:bold;color:#750f24;">Your Royal Messengers</p>
+          <p style="margin:0 0 12px;font-size:14px;line-height:1.8;">
+            Kavishka: <a href="mailto:kavishkaaushadi@aiesec.net" style="color:#750f24;">kavishkaaushadi@aiesec.net</a><br>076 220 6380
+          </p>
+          <p style="margin:0 0 20px;font-size:14px;line-height:1.8;">
+            Dilshini: <a href="mailto:dilshibandara@aiesec.net" style="color:#750f24;">dilshibandara@aiesec.net</a><br>076 289 9108
+          </p>
+          <p style="margin:0;line-height:1.7;">See you at the royal gathering!<br><strong>Kandy Roar 7.0 Organizing Committee</strong><br>AIESEC in Kandy</p>
+        </td></tr>
+      </table>
+    </td></tr>
+  </table>
+</body></html>`;
 }
 
 function escapeEmailHtml(value) {
@@ -72,6 +133,6 @@ function escapeEmailHtml(value) {
 // Run this once in the editor to authorize Sheets access and email sending.
 // It checks the quota without sending a test email.
 function authorizeConfirmationEmail() {
-  SpreadsheetApp.openById("PASTE_YOUR_EXISTING_SPREADSHEET_ID_HERE").getName();
+  SpreadsheetApp.openById("1rSZSQQrncA9IxOpkjKaGs5y4RVo2wlbgbMOsJ46nZCg").getName();
   console.log("Remaining email recipients today: " + MailApp.getRemainingDailyQuota());
 }
