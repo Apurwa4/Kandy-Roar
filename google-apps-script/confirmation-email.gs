@@ -37,14 +37,19 @@ function sendRegistrationConfirmation(data) {
       "AIESEC in Kandy",
     ].join("\n");
 
-    MailApp.sendEmail({
+    const logo = loadConfirmationLogo();
+    const message = {
       to: email,
       subject: "Kandy Roar 7.0 — Registration Confirmation",
       name: "Kandy Roar 7.0 | AIESEC in Kandy",
       replyTo: "kavishkaaushadi@aiesec.net",
       body: body,
-      htmlBody: buildRegistrationEmailHtml(data),
-    });
+      htmlBody: buildRegistrationEmailHtml(data, Boolean(logo)),
+    };
+    if (logo) {
+      message.inlineImages = { kandyRoarLogo: logo };
+    }
+    MailApp.sendEmail(message);
     return "sent";
   } catch (_) {
     // The registration is already saved; email failure must not undo success.
@@ -53,12 +58,29 @@ function sendRegistrationConfirmation(data) {
   }
 }
 
-function buildRegistrationEmailHtml(data) {
+function loadConfirmationLogo() {
+  try {
+    const response = UrlFetchApp.fetch(
+      "https://kandy-roar-7.vercel.app/images/kandy-roar-logo-transparent.png",
+      { muteHttpExceptions: true, followRedirects: true }
+    );
+    const blob = response.getBlob();
+    if (response.getResponseCode() !== 200 || blob.getContentType() !== "image/png") {
+      throw new Error("Logo URL did not return a PNG image.");
+    }
+    return blob.setName("kandy-roar-logo.png");
+  } catch (_) {
+    // Keep sending the confirmation if the image is unavailable.
+    console.error("Confirmation logo could not be loaded; email will use text branding.");
+    return null;
+  }
+}
+
+function buildRegistrationEmailHtml(data, hasInlineLogo) {
   const name = escapeEmailHtml(String(data.fullName || "Delegate").trim());
   const code = escapeEmailHtml(String(data.id || "").trim());
   const entity = escapeEmailHtml(String(data.entity || "").trim());
   const email = escapeEmailHtml(String(data.email || "").trim());
-  const logoUrl = "https://kandy-roar-7.vercel.app/images/kandy-roar-logo-transparent.png";
 
   // Tables and inline styles work without JavaScript in email clients.
   return `<!doctype html>
@@ -82,7 +104,9 @@ function buildRegistrationEmailHtml(data) {
               <table role="presentation" width="100%" cellpadding="0" cellspacing="0" border="0">
                 <tr>
                   <td width="90" valign="middle" style="padding-right:12px;">
-                    <img src="${logoUrl}" width="90" height="48" alt="Kandy Roar" style="display:block;border:0;width:90px;height:48px;">
+                    ${hasInlineLogo
+                      ? '<img src="cid:kandyRoarLogo" width="90" height="48" alt="Kandy Roar" style="display:block;border:0;width:90px;height:48px;">'
+                      : '<span style="font-size:14px;font-weight:bold;color:#8a650c;">KANDY<br>ROAR</span>'}
                   </td>
                   <td valign="middle">
                     <p style="margin:0 0 4px;font-size:12px;font-weight:bold;letter-spacing:1px;color:#8a650c;">DELEGATE PASS</p>
@@ -135,4 +159,8 @@ function escapeEmailHtml(value) {
 function authorizeConfirmationEmail() {
   SpreadsheetApp.openById("1rSZSQQrncA9IxOpkjKaGs5y4RVo2wlbgbMOsJ46nZCg").getName();
   console.log("Remaining email recipients today: " + MailApp.getRemainingDailyQuota());
+  if (!loadConfirmationLogo()) {
+    throw new Error("Logo check failed. Check authorization and the public logo URL before deploying.");
+  }
+  console.log("Embedded logo loaded successfully.");
 }
