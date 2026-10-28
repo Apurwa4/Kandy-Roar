@@ -23,7 +23,6 @@ function sendRegistrationConfirmation(data) {
       "Entity: " + entity,
       "",
       "Keep this email and your registration code for reference.",
-      "You can also download your summary from the website's registration confirmation screen.",
       "",
       "For questions, contact our Royal Messengers:",
       "Kavishka: kavishkaaushadi@aiesec.net | 076 220 6380",
@@ -49,7 +48,7 @@ function sendRegistrationConfirmation(data) {
         "<p>Your registration for Kandy Roar 7.0 has been recorded.</p>" +
         '<p style="background:#f4eee3;padding:16px"><strong>Registration code: ' + escapeEmailHtml(code) +
         "</strong><br>Entity: " + escapeEmailHtml(entity) + "</p>" +
-        "<p>Keep this email and your registration code for reference. You can also download your summary from the website's registration confirmation screen.</p>" +
+        "<p>Keep this email and your registration code for reference.</p>" +
         "<p>For questions, contact our Royal Messengers:<br>" +
         '<a href="mailto:kavishkaaushadi@aiesec.net">Kavishka</a> · 076 220 6380<br>' +
         '<a href="mailto:dilshibandara@aiesec.net">Dilshini</a> · 076 289 9108</p>' +

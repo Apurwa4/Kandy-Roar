@@ -3,7 +3,6 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import confetti from "canvas-confetti";
-import { createRegistrationReport, type RegistrationReport } from "../lib/registration-report";
 import {
   ScrollText,
   Send,
@@ -17,7 +16,6 @@ import {
   Copy,
   Check,
   RefreshCw,
-  Download,
 } from "lucide-react";
 
 export default function RoyalRegistrationForm() {
@@ -69,7 +67,6 @@ export default function RoyalRegistrationForm() {
     email: string;
     googleSheetStatus?: string;
     emailStatus?: "sent" | "failed" | "quota_exceeded";
-    report: RegistrationReport;
   } | null>(null);
 
   const [copied, setCopied] = useState(false);
@@ -187,27 +184,6 @@ export default function RoyalRegistrationForm() {
         email: formData.email,
         googleSheetStatus: data.googleSheetStatus,
         emailStatus: data.emailStatus,
-        report: {
-          registrationId: data.registrationId,
-          submittedAt: new Date().toLocaleString("en-GB", { timeZone: "Asia/Colombo" }) + " (Sri Lanka time)",
-          details: [
-            ["Full name", formData.fullName.trim()],
-            ["Email", formData.email.trim()],
-            ["Phone / WhatsApp", formData.phone.trim()],
-            ["Date of birth", formData.dob],
-            ["Entity", formData.entity === "Other" ? formData.entityOther.trim() : formData.entity],
-            ["Faculty", formData.faculty === "Other" ? formData.facultyOther.trim() : formData.faculty],
-            ["Front Office", formData.frontOffice],
-            ["Back Office", formData.backOffice],
-            ["Position", formData.position],
-            ["NIC number", formData.nic.trim()],
-            ["University registration number", formData.uniRegNo.trim()],
-            ["Address", formData.address.trim()],
-            ["Emergency contact name", formData.emergencyName.trim()],
-            ["Emergency contact phone", formData.emergencyPhone.trim()],
-            ["Message", formData.message.trim()],
-          ],
-        },
       });
 
       setFormData({
@@ -235,19 +211,6 @@ export default function RoyalRegistrationForm() {
     } finally {
       setIsSubmitting(false);
     }
-  };
-
-  const handleDownloadReport = () => {
-    if (!successData) return;
-    const blob = new Blob([createRegistrationReport(successData.report)], { type: "text/html;charset=utf-8" });
-    const url = URL.createObjectURL(blob);
-    const link = document.createElement("a");
-    link.href = url;
-    link.download = `Kandy-Roar-${successData.registrationId}-Summary.html`;
-    document.body.appendChild(link);
-    link.click();
-    link.remove();
-    setTimeout(() => URL.revokeObjectURL(url), 60_000);
   };
 
   const handleCopyId = () => {
@@ -313,7 +276,7 @@ export default function RoyalRegistrationForm() {
             <p role="status" className="text-sm text-[#4a2e2b] max-w-lg mx-auto mt-3 leading-relaxed">
               {successData.emailStatus === "sent"
                 ? `A confirmation email has been sent to ${successData.email}. Please check your inbox and Spam folder.`
-                : "Your registration is saved, but we could not send the confirmation email. Download your summary below and keep your registration code. You do not need to register again."}
+                : "Your registration is saved, but we could not send the confirmation email. Please copy and keep your registration code. You do not need to register again."}
             </p>
           )}
 
@@ -349,7 +312,7 @@ export default function RoyalRegistrationForm() {
             </div>
 
             <div className="mt-4 pt-3 border-t border-[#c9b382]/50 flex items-center justify-between">
-              <span className="text-[10px] text-[#750f24] font-bold">Royal Duty Approved • 10 Years LDS</span>
+              <span className="text-[10px] text-[#750f24] font-bold">Royal Duty Approved</span>
               <button
                 onClick={handleCopyId}
                 className="inline-flex items-center gap-1.5 text-xs font-semibold px-2.5 py-1 rounded-md bg-[#23040a] text-[#fae19c] hover:bg-[#3a0610] transition-colors"
@@ -360,19 +323,7 @@ export default function RoyalRegistrationForm() {
             </div>
           </div>
 
-          <div className="text-xs text-[#5a423f] max-w-md mx-auto mb-6 bg-[#eedfc5]/60 p-2.5 rounded-xl border border-[#c9b382]">
-            <span>Download your registration summary to keep your Royal Registry Code and submitted details. Open the downloaded report to print it or save it as a PDF.</span>
-          </div>
-
           <div className="flex flex-col sm:flex-row items-center justify-center gap-3">
-            <button
-              type="button"
-              onClick={handleDownloadReport}
-              className="gold-btn px-6 py-2.5 rounded-full text-xs uppercase font-extrabold flex items-center gap-2"
-            >
-              <Download className="w-3.5 h-3.5" />
-              <span>Download Summary Report</span>
-            </button>
             <button
               onClick={() => { setStep(0); setSuccessData(null); }}
               className="gold-btn px-6 py-2.5 rounded-full text-xs uppercase font-extrabold flex items-center gap-2"
