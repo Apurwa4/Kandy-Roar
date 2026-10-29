@@ -14,7 +14,7 @@ export default function Footer() {
       phoneHref: "tel:+94762206380",
     },
     {
-      name: "Dilshini",
+      name: "Dilshi",
       photo: "/images/dilshini.jpeg",
       email: "dilshibandara@aiesec.net",
       phone: "076 289 9108",
@@ -48,14 +48,14 @@ export default function Footer() {
               </p>
             </div>
 
-            <div className="w-fit max-w-full p-6">
+            <div className="w-fit max-w-full py-6 pr-6">
               <Image
                 src="/images/aiesec-logo.png"
                 alt="AIESEC"
                 width={2048}
                 height={292}
-                sizes="160px"
-                className="block w-40 max-w-full h-auto grayscale opacity-80"
+                sizes="(min-width: 640px) 240px, 208px"
+                className="block w-52 sm:w-60 max-w-full h-auto grayscale opacity-80"
               />
             </div>
 
@@ -66,42 +66,42 @@ export default function Footer() {
           </div>
 
           {/* Col 2: Delegate contacts */}
-          <div className="md:col-span-7 min-w-0 space-y-4">
-            <div className="text-xs font-bold uppercase tracking-widest text-[#d4af37]">
+          <div className="md:col-span-7 min-w-0 space-y-6">
+            <div className="text-base sm:text-lg font-bold uppercase tracking-widest text-[#d4af37]">
               Meet Your Royal Messengers
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 gap-4">
               {delegateContacts.map((contact) => (
                 <div
                   key={contact.email}
-                  className="flex items-start gap-3 rounded-2xl border border-[#d4af37]/25 bg-[#23040a]/60 p-4"
+                  className="flex items-start gap-4 rounded-2xl border border-[#d4af37]/25 bg-[#23040a]/60 p-5 sm:p-6"
                 >
-                  <div className="relative h-16 w-16 shrink-0 overflow-hidden rounded-full border border-[#d4af37]/50">
+                  <div className="relative h-20 w-20 shrink-0 overflow-hidden rounded-full border border-[#d4af37]/50">
                     <Image
                       src={contact.photo}
                       alt={contact.name}
                       fill
-                      sizes="64px"
+                      sizes="80px"
                       className="object-cover object-top"
                     />
                   </div>
-                  <div className="min-w-0 space-y-1.5">
-                    <h3 className="font-heading font-bold text-base text-[#fae19c]">
+                  <div className="min-w-0 space-y-2">
+                    <h3 className="font-heading font-bold text-xl text-[#fae19c]">
                       {contact.name}
                     </h3>
-                    <p className="text-[10px] font-semibold uppercase tracking-wider text-[#d4af37]">
+                    <p className="text-xs font-semibold uppercase tracking-wider text-[#d4af37]">
                       Royal Messengers
                     </p>
                     <a
                       href={`mailto:${contact.email}`}
-                      className="flex items-start gap-2 text-xs text-[#f6eedb]/80 hover:text-[#fae19c] transition-colors"
+                      className="flex items-start gap-2 text-sm text-[#f6eedb]/80 hover:text-[#fae19c] transition-colors"
                     >
                       <Mail className="mt-0.5 h-3.5 w-3.5 shrink-0 text-[#d4af37]" />
                       <span className="break-all">{contact.email}</span>
                     </a>
                     <a
                       href={contact.phoneHref}
-                      className="flex items-center gap-2 text-xs text-[#f6eedb]/80 hover:text-[#fae19c] transition-colors"
+                      className="flex items-center gap-2 text-sm text-[#f6eedb]/80 hover:text-[#fae19c] transition-colors"
                     >
                       <Phone className="h-3.5 w-3.5 shrink-0 text-[#d4af37]" />
                       <span>{contact.phone}</span>
