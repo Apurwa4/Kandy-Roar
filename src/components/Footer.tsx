@@ -2,13 +2,9 @@
 
 import React from "react";
 import Image from "next/image";
-import { ScrollText, FileCheck2, ShoppingBag, Mail, Phone } from "lucide-react";
+import { Mail, Phone } from "lucide-react";
 
-interface FooterProps {
-  onOpenShop: () => void;
-}
-
-export default function Footer({ onOpenShop }: FooterProps) {
+export default function Footer() {
   const delegateContacts = [
     {
       name: "Kavishka",
@@ -26,10 +22,6 @@ export default function Footer({ onOpenShop }: FooterProps) {
     },
   ];
 
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: "smooth" });
-  };
-
   return (
     <footer className="relative bg-[#0d0306] border-t border-[#d4af37]/30 pt-16 pb-12 text-[#f6eedb] overflow-hidden">
       {/* Decorative top border accent */}
@@ -39,7 +31,7 @@ export default function Footer({ onOpenShop }: FooterProps) {
         <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#d4af37]/20">
           
           {/* Col 1: Brand & Proclamation using official Kandy Roar logo */}
-          <div className="md:col-span-7 lg:col-span-5 space-y-4">
+          <div className="md:col-span-5 space-y-4">
             <div className="flex items-center gap-3">
               <div className="relative w-20 h-12 shrink-0">
                 <Image
@@ -70,48 +62,12 @@ export default function Footer({ onOpenShop }: FooterProps) {
             </div>
           </div>
 
-          {/* Col 2: Navigation */}
-          <div className="md:col-span-5 lg:col-span-3 space-y-3">
-            <div className="text-xs font-bold uppercase tracking-widest text-[#d4af37]">
-              Royal Portals
-            </div>
-            <ul className="space-y-2.5 text-xs">
-              <li>
-                <button
-                  onClick={scrollToTop}
-                  className="text-[#f6eedb]/80 hover:text-[#d4af37] transition-colors flex items-center gap-2"
-                >
-                  <ScrollText className="w-3.5 h-3.5 text-[#d4af37]" />
-                  <span>The Royal Proclamation</span>
-                </button>
-              </li>
-              <li>
-                <a
-                  href="#registration"
-                  className="text-[#f6eedb]/80 hover:text-[#d4af37] transition-colors flex items-center gap-2"
-                >
-                  <FileCheck2 className="w-3.5 h-3.5 text-[#d4af37]" />
-                  <span>Villager Registry Form</span>
-                </a>
-              </li>
-              <li>
-                <button
-                  onClick={onOpenShop}
-                  className="text-[#f6eedb]/80 hover:text-[#d4af37] transition-colors flex items-center gap-2"
-                >
-                  <ShoppingBag className="w-3.5 h-3.5 text-[#d4af37]" />
-                  <span>Royal Merch Packs (Coming Soon)</span>
-                </button>
-              </li>
-            </ul>
-          </div>
-
-          {/* Col 3: Delegate contacts */}
-          <div className="md:col-span-12 lg:col-span-4 min-w-0 space-y-4">
+          {/* Col 2: Delegate contacts */}
+          <div className="md:col-span-7 min-w-0 space-y-4">
             <div className="text-xs font-bold uppercase tracking-widest text-[#d4af37]">
               Meet Your Royal Messengers
             </div>
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-1 gap-3">
+            <div className="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-1 xl:grid-cols-2 gap-3">
               {delegateContacts.map((contact) => (
                 <div
                   key={contact.email}

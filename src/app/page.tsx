@@ -52,7 +52,7 @@ export default function Home() {
       </main>
 
       {/* Footer */}
-      <Footer onOpenShop={() => setShopOpen(true)} />
+      <Footer />
 
       {/* Royal Merch Shop Preview Modal */}
       <ShopModal
