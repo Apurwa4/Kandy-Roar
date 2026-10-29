@@ -38,7 +38,7 @@ export default function RoyalDecree() {
 
   return (
     <section id="proclamation" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-      <div className="mb-10 flex flex-col-reverse items-center justify-between gap-5 md:mb-12 md:flex-row md:gap-10">
+      <div data-reveal className="page-reveal mb-10 flex flex-col-reverse items-center justify-between gap-5 md:mb-12 md:flex-row md:gap-10">
         <div className="space-y-3 text-center md:max-w-3xl md:text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3a0610] border border-[#d4af37]/40 text-xs font-bold text-[#fae19c] uppercase tracking-wider">
           <Shield className="w-3.5 h-3.5 text-[#d4af37]" />
@@ -61,7 +61,8 @@ export default function RoyalDecree() {
           return (
             <div
               key={idx}
-              className="crimson-card crimson-card-hover rounded-2xl p-6 flex flex-col justify-between group"
+              data-reveal
+              className="page-reveal crimson-card crimson-card-hover rounded-2xl p-6 flex flex-col justify-between group"
             >
               <div>
                 <div className="mb-4 p-3 rounded-2xl bg-[#3a0610] border border-[#d4af37]/30 inline-block group-hover:scale-110 transition-transform">

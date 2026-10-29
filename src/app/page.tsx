@@ -8,6 +8,7 @@ import RoyalRegistrationForm from "@/components/RoyalRegistrationForm";
 import Footer from "@/components/Footer";
 import CommunityPhoto from "@/components/CommunityPhoto";
 import RecapVideos from "@/components/RecapVideos";
+import PageAtmosphere from "@/components/PageAtmosphere";
 
 export default function Home() {
   const handleScrollToRegister = () => {
@@ -19,6 +20,7 @@ export default function Home() {
 
   return (
     <div className="relative min-h-screen bg-[#110609] text-[#f6eedb] selection:bg-[#d4af37] selection:text-[#110609] overflow-x-hidden">
+      <PageAtmosphere />
       {/* Subtle traditional motif background watermark pattern */}
       <div 
         className="fixed inset-0 pointer-events-none opacity-5 z-0"

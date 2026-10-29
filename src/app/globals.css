@@ -281,6 +281,70 @@ body {
   .kingdom-artwork-bounce { animation: none; }
 }
 
+/* Quiet background movement: sparse dust and low-opacity radial light. */
+.ambient-light {
+  position: absolute;
+  width: 80vw;
+  height: 80vh;
+  animation: ambientLightDrift 32s ease-in-out infinite alternate;
+}
+
+.ambient-light-gold {
+  top: -15%;
+  left: -25%;
+  background: radial-gradient(ellipse, rgba(212, 175, 55, 0.045), transparent 68%);
+}
+
+.ambient-light-crimson {
+  bottom: -15%;
+  right: -25%;
+  background: radial-gradient(ellipse, rgba(145, 25, 52, 0.07), transparent 68%);
+  animation-delay: -16s;
+  animation-direction: alternate-reverse;
+}
+
+.gold-dust {
+  position: absolute;
+  width: 2px;
+  height: 2px;
+  border-radius: 50%;
+  background: #f1cf6b;
+  opacity: 0;
+  animation: goldDustDrift var(--dust-duration, 26s) ease-in-out var(--dust-delay, 0s) infinite;
+}
+
+@keyframes ambientLightDrift {
+  from { transform: translate3d(0, 0, 0); }
+  to { transform: translate3d(5vw, 5vh, 0); }
+}
+
+@keyframes goldDustDrift {
+  0%, 100% { opacity: 0; transform: translate3d(0, 10px, 0); }
+  25% { opacity: 0.18; }
+  70% { opacity: 0.1; }
+  90% { opacity: 0; transform: translate3d(18px, -70px, 0); }
+}
+
+.atmosphere-paused .ambient-light,
+.atmosphere-paused .gold-dust { animation-play-state: paused; }
+
+/* Content is visible by default, including before JavaScript initializes. */
+.page-reveal {
+  transition: opacity 650ms ease, translate 650ms cubic-bezier(0.2, 0.7, 0.3, 1);
+}
+
+.page-reveal-pending {
+  opacity: 0;
+  translate: 0 14px;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .ambient-light { animation: none; }
+  .gold-dust { display: none; animation: none; }
+  .page-reveal { transition: none; }
+  .page-reveal-pending { opacity: 1; translate: none; }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 9px;
