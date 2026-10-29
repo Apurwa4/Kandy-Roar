@@ -72,7 +72,7 @@ export default function Hero({ onRegisterClick }: HeroProps) {
 
             {/* Proclamation Copy: Clean and unboxed */}
             <p className="text-sm sm:text-base text-[#f6eedb]/85 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-              The royal gates are opening. Join us for the landmark 7th edition of the flagship Leadership Development Seminar. Answer the royal call, fulfil your <span className="text-[#fae19c] font-semibold">Royal Duty</span>, and inscribe your name in the kingdom&apos;s history.
+              The royal gates are opening. Join us for the landmark 7th edition of the Leadership Development Seminar. Answer the royal call, fulfil your <span className="text-[#fae19c] font-semibold">Royal Duty</span>, and inscribe your name in the kingdom&apos;s history.
             </p>
 
             {/* Event Dates & Realm - Minimalist Tags */}
