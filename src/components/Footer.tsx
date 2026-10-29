@@ -52,12 +52,12 @@ export default function Footer() {
 
             <div className="w-fit max-w-full py-4 pr-6">
               <Image
-                src="/images/aiesec-logo.png"
+                src="/images/aiesec-logo-transparent.png"
                 alt="AIESEC"
-                width={2048}
-                height={292}
+                width={2172}
+                height={724}
                 sizes="(min-width: 640px) 208px, 192px"
-                className="block w-48 sm:w-52 max-w-full h-auto grayscale opacity-80"
+                className="block w-48 sm:w-52 max-w-full h-auto opacity-90"
               />
             </div>
 
