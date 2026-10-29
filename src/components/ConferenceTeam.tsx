@@ -48,7 +48,7 @@ function MemberCard({ member }: { member: Member }) {
             <span className="text-[10px] uppercase tracking-widest">Portrait coming soon</span>
           </div>
         ) : (
-          <Image src={member.image!} alt={member.name} fill sizes="(max-width: 480px) 44vw, 250px" className="object-contain object-bottom transition-transform duration-500 motion-safe:group-hover:scale-[1.035]" />
+          <Image src={member.image} alt={member.name} fill sizes="(max-width: 480px) 44vw, 250px" className="object-contain object-bottom transition-transform duration-500 motion-safe:group-hover:scale-[1.035]" />
         )}
       </div>
       <div className="relative min-h-28 flex-1 border-t border-[#d4af37]/25 bg-[#1c060d]/90 px-3 py-5">
@@ -83,9 +83,10 @@ export default function ConferenceTeam() {
           </button>
         ))}
       </div>
-      <div id={`team-panel-${committee}`} role="tabpanel" aria-labelledby={`team-tab-${committee}`} tabIndex={0} className="focus-visible:outline-[#d4af37]">
-        <h3 className="text-center font-heading text-xl text-[#fae19c]">{committee === "EB" ? "Executive Board" : "Organizing Committee"}</h3>
-        {(committee === "EB" ? eb : oc).map(group => (
+      {(["EB", "OC"] as const).map(panel => (
+      <div key={panel} id={`team-panel-${panel}`} role="tabpanel" aria-labelledby={`team-tab-${panel}`} hidden={committee !== panel} tabIndex={0} className="focus-visible:outline-[#d4af37]">
+        <h3 className="text-center font-heading text-xl text-[#fae19c]">{panel === "EB" ? "Executive Board" : "Organizing Committee"}</h3>
+        {(panel === "EB" ? eb : oc).map(group => (
           <div key={group.title} className="mt-12 sm:mt-16">
             <div className="mb-7 flex items-center justify-center gap-4 text-center">
               <span aria-hidden="true" className="h-px w-8 bg-[#d4af37]/40 sm:w-16" />
@@ -93,11 +94,12 @@ export default function ConferenceTeam() {
               <span aria-hidden="true" className="h-px w-8 bg-[#d4af37]/40 sm:w-16" />
             </div>
             <div className="flex flex-wrap justify-center gap-x-4 gap-y-7 sm:gap-x-6">
-              {group.members.map(member => <div key={member.name} className="flex w-[calc(50%-0.5rem)] justify-center sm:w-[calc(33.333%-1rem)] lg:w-[calc(25%-1.125rem)]"><MemberCard member={member} /></div>)}
+              {group.members.map(member => <div key={member.name} className={`flex justify-center ${group.members.length <= 2 ? "w-full max-w-[250px]" : "w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[calc(25%-1.125rem)]"}`}><MemberCard member={member} /></div>)}
             </div>
           </div>
         ))}
       </div>
+      ))}
     </section>
   );
 }
