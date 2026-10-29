@@ -7,6 +7,7 @@ import RoyalDecree from "@/components/RoyalDecree";
 import RoyalRegistrationForm from "@/components/RoyalRegistrationForm";
 import Footer from "@/components/Footer";
 import CommunityPhoto from "@/components/CommunityPhoto";
+import RecapVideos from "@/components/RecapVideos";
 
 export default function Home() {
   const handleScrollToRegister = () => {
@@ -40,6 +41,8 @@ export default function Home() {
 
         {/* The 4 Royal Pillars of Kandy Roar 7.0 */}
         <RoyalDecree />
+
+        <RecapVideos />
 
         {/* The Royal Registration Form Portal */}
         <RoyalRegistrationForm />
