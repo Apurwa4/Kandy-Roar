@@ -33,23 +33,29 @@ export default function Footer() {
           {/* Col 1: Event identity and AIESEC branding */}
           <div className="md:col-span-5 space-y-8">
             <div className="space-y-5">
-              <h2 className="font-heading font-black text-3xl sm:text-4xl leading-tight tracking-tight text-white">
-                KANDY ROAR <span className="text-[#bd1836]">7.0</span>
-              </h2>
+              <h2 className="sr-only">Kandy Roar 7.0</h2>
+              <Image
+                src="/images/kandy-roar-logo-transparent.png"
+                alt="Kandy Roar"
+                width={1722}
+                height={913}
+                sizes="(min-width: 640px) 256px, 224px"
+                className="block w-56 sm:w-64 max-w-full h-auto"
+              />
               <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] leading-loose text-[#f6eedb]/75">
                 Leadership Development Seminar<br />
                 AIESEC in Kandy
               </p>
             </div>
 
-            <div className="w-full max-w-xs bg-white px-6 py-6 sm:px-8 sm:py-7">
+            <div className="w-fit max-w-full p-6">
               <Image
                 src="/images/aiesec-logo.png"
                 alt="AIESEC"
                 width={2048}
                 height={292}
-                sizes="(min-width: 640px) 256px, 272px"
-                className="block w-full h-auto"
+                sizes="160px"
+                className="block w-40 max-w-full h-auto grayscale opacity-80"
               />
             </div>
 
