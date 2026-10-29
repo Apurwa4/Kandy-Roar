@@ -23,43 +23,40 @@ export default function Footer() {
   ];
 
   return (
-    <footer className="relative bg-[#0d0306] border-t border-[#d4af37]/30 pt-16 pb-12 text-[#f6eedb] overflow-hidden">
+    <footer className="relative bg-[#080808] border-t border-[#d4af37]/30 pt-16 sm:pt-20 pb-10 text-[#f6eedb] overflow-hidden">
       {/* Decorative top border accent */}
       <div className="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-[#d4af37]/20 via-[#d4af37] to-[#d4af37]/20" />
 
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div className="grid grid-cols-1 md:grid-cols-12 gap-10 pb-12 border-b border-[#d4af37]/20">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 lg:gap-16 pb-16 sm:pb-20 border-b border-white/10">
           
-          {/* Col 1: Brand & Proclamation using official Kandy Roar logo */}
-          <div className="md:col-span-5 space-y-4">
-            <div className="flex items-center gap-3">
-              <div className="relative w-20 h-12 shrink-0">
-                <Image
-                  src="/images/kandy-roar-logo-transparent.png"
-                  alt="Kandy Roar logo"
-                  fill
-                  sizes="80px"
-                  className="object-contain"
-                />
-              </div>
-              <div>
-                <div className="font-heading font-black text-xl text-[#ffffff] tracking-wider">
-                  KANDY ROAR <span className="gold-text">7.0</span>
-                </div>
-                <div className="text-xs text-[#d4af37] tracking-wider uppercase font-medium">
-                  AIESEC in Kandy • LDS 2026/27
-                </div>
-              </div>
+          {/* Col 1: Event identity and AIESEC branding */}
+          <div className="md:col-span-5 space-y-8">
+            <div className="space-y-5">
+              <h2 className="font-heading font-black text-3xl sm:text-4xl leading-tight tracking-tight text-white">
+                KANDY ROAR <span className="text-[#bd1836]">7.0</span>
+              </h2>
+              <p className="font-mono text-[10px] sm:text-[11px] uppercase tracking-[0.22em] leading-loose text-[#f6eedb]/75">
+                Leadership Development Seminar<br />
+                AIESEC in Kandy
+              </p>
             </div>
 
-            <p className="text-xs sm:text-sm text-[#f6eedb]/75 leading-relaxed max-w-sm">
-              The flagship Leadership Development Seminar of AIESEC in Kandy, celebrating 10 glorious
-              years of youth leadership, empowerment, and cultural heritage in the heart of the Kandyan Kingdom.
+            <div className="w-full max-w-xs bg-white px-6 py-6 sm:px-8 sm:py-7">
+              <Image
+                src="/images/aiesec-logo.png"
+                alt="AIESEC"
+                width={2048}
+                height={292}
+                sizes="(min-width: 640px) 256px, 272px"
+                className="block w-full h-auto"
+              />
+            </div>
+
+            <p className="flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#f6eedb]/70">
+              <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#bd1836]" />
+              The Gates Are Open
             </p>
-
-            <div className="font-heading text-sm text-[#fae19c]">
-              The Gates Are Open • Royal Gathering 7.0
-            </div>
           </div>
 
           {/* Col 2: Delegate contacts */}
@@ -112,13 +109,8 @@ export default function Footer() {
         </div>
 
         {/* Bottom Bar */}
-        <div className="pt-8 flex flex-col sm:flex-row items-center justify-between gap-4 text-[11px] text-[#f6eedb]/60">
-          <div>
-            © 2026 Kandy Roar 7.0 • AIESEC in Kandy. All royal rights reserved.
-          </div>
-          <div className="flex items-center gap-2 text-[#d4af37]">
-            <span>10 Years of Royalty • AIESEC in Kandy</span>
-          </div>
+        <div className="pt-8 font-mono text-[10px] uppercase tracking-[0.18em] leading-loose text-[#f6eedb]/50">
+          © 2026 Kandy Roar 7.0 • AIESEC in Kandy. All rights reserved.
         </div>
       </div>
     </footer>
