@@ -19,9 +19,9 @@ These assignments were supplied by the user; duplicate shots were omitted.
 | Harindu | IMG_9198.JPG |
 | Shahla | IMG_9223.JPG |
 | Inuri | IMG_9234.JPG |
-| Devmi | IMG_9258.JPG |
-| Jayani | IMG_9267.JPG |
-| Sayuni | IMG_9280.JPG |
+| Devmi | IMG_9239.JPG |
+| Jayani | IMG_9242.JPG |
+| Sayuni | IMG_9254.JPG |
 | Zahra | IMG_9399.JPG |
 | Yethmini | IMG_9406.JPG |
 
