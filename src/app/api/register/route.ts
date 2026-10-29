@@ -1,6 +1,7 @@
 import { NextRequest, NextResponse } from "next/server";
 import fs from "fs";
 import path from "path";
+import { getRegistrationCountdown, REGISTRATION_OPENS_AT } from "@/lib/registration-schedule";
 
 const DATA_DIR = path.join(process.cwd(), "data");
 const DATA_FILE = path.join(DATA_DIR, "registrations.json");
@@ -23,6 +24,12 @@ export async function GET() {
 }
 
 export async function POST(req: NextRequest) {
+  if (!getRegistrationCountdown().isLive) {
+    return NextResponse.json(
+      { success: false, error: "Registrations open on 31 October 2026 at 12:00 AM, Sri Lanka time.", opensAt: REGISTRATION_OPENS_AT },
+      { status: 403 }
+    );
+  }
   try {
     const body = await req.json();
 

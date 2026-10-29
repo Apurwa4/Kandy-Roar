@@ -1,6 +1,7 @@
 "use client";
 
-import React, { useState, useEffect } from "react";
+import React from "react";
+import { useRegistrationCountdown } from "@/lib/use-registration-countdown";
 import Image from "next/image";
 import {
   Calendar,
@@ -17,42 +18,7 @@ interface HeroProps {
 }
 
 export default function Hero({ onRegisterClick }: HeroProps) {
-  const [timeLeft, setTimeLeft] = useState<{
-    days: number;
-    hours: number;
-    minutes: number;
-    seconds: number;
-    isLive: boolean;
-  }>({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-    isLive: false,
-  });
-
-  useEffect(() => {
-    const targetDate = new Date("2026-10-24T00:00:00+05:30");
-
-    const updateTimer = () => {
-      const now = new Date();
-      const diff = targetDate.getTime() - now.getTime();
-
-      if (diff <= 0) {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0, isLive: true });
-      } else {
-        const days = Math.floor(diff / (1000 * 60 * 60 * 24));
-        const hours = Math.floor((diff / (1000 * 60 * 60)) % 24);
-        const minutes = Math.floor((diff / 1000 / 60) % 60);
-        const seconds = Math.floor((diff / 1000) % 60);
-        setTimeLeft({ days, hours, minutes, seconds, isLive: false });
-      }
-    };
-
-    updateTimer();
-    const interval = setInterval(updateTimer, 1000);
-    return () => clearInterval(interval);
-  }, []);
+  const timeLeft = useRegistrationCountdown();
 
   return (
     <section id="hero" className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
@@ -90,8 +56,8 @@ export default function Hero({ onRegisterClick }: HeroProps) {
 
             {/* Royal proclamation headline */}
             <div className="space-y-1 overflow-visible">
-              <div aria-label="The Gates Are Open" className="royal-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">
-                {["The Gates", "Are Open"].map((phrase, index) => (
+              <div aria-label={timeLeft.isLive ? "The Gates Are Open" : "The Gates Open Soon"} className="royal-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">
+                {["The Gates", timeLeft.isLive ? "Are Open" : "Open Soon"].map((phrase, index) => (
                   <React.Fragment key={phrase}>
                     {index > 0 && " "}
                     <span aria-hidden="true" className="royal-wave-word gold-text" style={{ animationDelay: `${index * -2}s` }}>{phrase}</span>
@@ -126,11 +92,11 @@ export default function Hero({ onRegisterClick }: HeroProps) {
               <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-3 px-5 rounded-2xl bg-[#1c050b] border border-[#d4af37]/35 shadow-xl">
                 <div className="flex items-center gap-2 text-xs font-semibold text-[#fae19c]">
                   <Clock className="w-4 h-4 text-[#d4af37]" />
-                  <span>{timeLeft.isLive ? "Registrations Open Now" : "Registrations Open: 24th Oct"}</span>
+                  <span>{timeLeft.isLive ? "Registrations Open Now" : "Registrations Open: 31st Oct"}</span>
                 </div>
 
                 {!timeLeft.isLive && (
-                  <div className="flex items-center gap-2 font-mono text-sm text-[#ffffff]">
+                  <div role="timer" aria-label="Time until registration opens" className="flex items-center gap-2 font-mono text-sm text-[#ffffff]">
                     <div className="text-center px-2 py-0.5 rounded bg-[#2b0811] border border-[#d4af37]/20">
                       <span className="font-bold text-[#fae19c]">{timeLeft.days}</span>
                       <span className="text-[9px] text-[#d4af37] block uppercase">d</span>

@@ -3,8 +3,10 @@
 import React from "react";
 import Image from "next/image";
 import { Mail, Phone } from "lucide-react";
+import { useRegistrationCountdown } from "@/lib/use-registration-countdown";
 
 export default function Footer() {
+  const { isLive } = useRegistrationCountdown();
   const delegateContacts = [
     {
       name: "Kavishka",
@@ -61,7 +63,7 @@ export default function Footer() {
 
             <p className="flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#f6eedb]/70">
               <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#bd1836]" />
-              The Gates Are Open
+              {isLive ? "The Gates Are Open" : "Registrations Open 31 October"}
             </p>
           </div>
 

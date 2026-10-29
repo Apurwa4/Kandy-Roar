@@ -3,6 +3,7 @@
 import React, { useRef, useState } from "react";
 import Image from "next/image";
 import confetti from "canvas-confetti";
+import { useRegistrationCountdown } from "@/lib/use-registration-countdown";
 import {
   ScrollText,
   Send,
@@ -19,6 +20,7 @@ import {
 } from "lucide-react";
 
 export default function RoyalRegistrationForm() {
+  const countdown = useRegistrationCountdown();
   const [step, setStep] = useState(0);
   const formRef = useRef<HTMLFormElement>(null);
   const steps = ["About you", "Contact", "Your university", "Your role", "Emergency contact"];
@@ -238,7 +240,15 @@ export default function RoyalRegistrationForm() {
       </div>
 
       {/* Success Modal / Digital Royal Pass */}
-      {successData ? (
+      {!countdown.isLive ? (
+        <div className="parchment-scroll rounded-3xl p-8 sm:p-12 text-center space-y-4">
+          <h3 className="font-heading font-bold text-2xl text-[#750f24]">The Royal Registry Opens Soon</h3>
+          <p className="text-sm text-[#4a2e2b]">Registrations open on 31 October 2026 at 12:00 AM, Sri Lanka time.</p>
+          <p role="timer" aria-label="Time until registration opens" className="font-mono font-bold text-xl sm:text-3xl text-[#750f24]">
+            {countdown.days}d : {countdown.hours}h : {countdown.minutes}m : {countdown.seconds}s
+          </p>
+        </div>
+      ) : successData ? (
         <div className="parchment-scroll rounded-3xl p-6 sm:p-10 text-center relative overflow-hidden shadow-2xl border-4 border-[#d4af37]">
           {/* Royal Seal Watermark with Lion Emblem */}
           <div className="absolute -top-8 -right-8 w-44 h-44 opacity-10 pointer-events-none">
