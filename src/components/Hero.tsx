@@ -71,15 +71,6 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
             
             {/* 10th Anniversary Pill */}
             <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#23040a] border border-[#d4af37]/40 shadow-md">
-              <div className="relative w-10 h-6 shrink-0">
-                <Image
-                  src="/images/kandy-roar-logo-transparent.png"
-                  alt="Kandy Roar logo"
-                  fill
-                  sizes="40px"
-                  className="object-contain"
-                />
-              </div>
               <span className="text-xs font-semibold tracking-wider text-[#fae19c]">
                 AIESEC in Kandy • Celebrating 10 Glorious Years
               </span>
