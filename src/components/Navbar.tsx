@@ -4,11 +4,7 @@ import React, { useState } from "react";
 import Image from "next/image";
 import { ScrollText, ShoppingBag, Menu, X, FileCheck2 } from "lucide-react";
 
-interface NavbarProps {
-  onOpenShop: () => void;
-}
-
-export default function Navbar({ onOpenShop }: NavbarProps) {
+export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
 
   const scrollToSection = (id: string) => {
@@ -70,10 +66,12 @@ export default function Navbar({ onOpenShop }: NavbarProps) {
 
             {/* Shop Nav Item with Coming Soon Badge */}
             <button
-              onClick={onOpenShop}
-              className="relative group px-3.5 py-1.5 rounded-lg bg-[#3a0610]/70 border border-[#d4af37]/30 hover:border-[#d4af37] text-sm font-medium text-[#fae19c] transition-all hover:shadow-lg hover:shadow-[#d4af37]/15 flex items-center gap-2"
+              type="button"
+              disabled
+              title="Royal Shop — coming soon"
+              className="relative px-3.5 py-1.5 rounded-lg bg-[#3a0610]/70 border border-[#d4af37]/30 text-sm font-medium text-[#fae19c] flex items-center gap-2 cursor-not-allowed"
             >
-              <ShoppingBag className="w-4 h-4 text-[#d4af37] group-hover:scale-110 transition-transform" />
+              <ShoppingBag className="w-4 h-4 text-[#d4af37]" />
               <span>Royal Shop</span>
               <span className="relative flex h-2 w-2">
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-[#d4af37] opacity-75"></span>
@@ -97,8 +95,10 @@ export default function Navbar({ onOpenShop }: NavbarProps) {
           {/* Mobile Menu Button */}
           <div className="flex md:hidden items-center gap-2">
             <button
-              onClick={onOpenShop}
-              className="p-2 rounded-lg bg-[#3a0610] text-[#fae19c] border border-[#d4af37]/30 text-xs flex items-center gap-1.5"
+              type="button"
+              disabled
+              title="Royal Shop — coming soon"
+              className="p-2 rounded-lg bg-[#3a0610] text-[#fae19c] border border-[#d4af37]/30 text-xs flex items-center gap-1.5 cursor-not-allowed"
             >
               <ShoppingBag className="w-4 h-4 text-[#d4af37]" />
               <span className="text-[10px] uppercase font-bold">Shop</span>
@@ -132,11 +132,10 @@ export default function Navbar({ onOpenShop }: NavbarProps) {
             <span>Royal Registry Form</span>
           </button>
           <button
-            onClick={() => {
-              setMobileMenuOpen(false);
-              onOpenShop();
-            }}
-            className="w-full text-left py-2.5 px-3 rounded-md bg-[#3a0610]/80 text-[#fae19c] border border-[#d4af37]/30 flex items-center justify-between text-sm"
+            type="button"
+            disabled
+            title="Royal Shop — coming soon"
+            className="w-full text-left py-2.5 px-3 rounded-md bg-[#3a0610]/80 text-[#fae19c] border border-[#d4af37]/30 flex items-center justify-between text-sm cursor-not-allowed"
           >
             <div className="flex items-center gap-2">
               <ShoppingBag className="w-4 h-4 text-[#d4af37]" />

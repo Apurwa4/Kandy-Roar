@@ -1,17 +1,14 @@
 "use client";
 
-import React, { useState } from "react";
+import React from "react";
 import Navbar from "@/components/Navbar";
 import Hero from "@/components/Hero";
 import RoyalDecree from "@/components/RoyalDecree";
 import RoyalRegistrationForm from "@/components/RoyalRegistrationForm";
-import ShopModal from "@/components/ShopModal";
 import Footer from "@/components/Footer";
 import CommunityPhoto from "@/components/CommunityPhoto";
 
 export default function Home() {
-  const [shopOpen, setShopOpen] = useState(false);
-
   const handleScrollToRegister = () => {
     const el = document.getElementById("registration");
     if (el) {
@@ -31,13 +28,12 @@ export default function Home() {
       />
 
       {/* Navigation Bar */}
-      <Navbar onOpenShop={() => setShopOpen(true)} />
+      <Navbar />
 
       <main className="relative z-10">
         {/* Hero Section with Official Poster & Proclamation */}
         <Hero
           onRegisterClick={handleScrollToRegister}
-          onOpenShop={() => setShopOpen(true)}
         />
 
         <CommunityPhoto kind="group" />
@@ -54,11 +50,6 @@ export default function Home() {
       {/* Footer */}
       <Footer />
 
-      {/* Royal Merch Shop Preview Modal */}
-      <ShopModal
-        isOpen={shopOpen}
-        onClose={() => setShopOpen(false)}
-      />
     </div>
   );
 }

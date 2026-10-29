@@ -14,10 +14,9 @@ import {
 
 interface HeroProps {
   onRegisterClick: () => void;
-  onOpenShop: () => void;
 }
 
-export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
+export default function Hero({ onRegisterClick }: HeroProps) {
   const [timeLeft, setTimeLeft] = useState<{
     days: number;
     hours: number;
@@ -168,8 +167,10 @@ export default function Hero({ onRegisterClick, onOpenShop }: HeroProps) {
               </button>
 
               <button
-                onClick={onOpenShop}
-                className="w-full sm:w-auto px-5 py-3.5 rounded-full bg-[#23040a] hover:bg-[#380712] text-[#fae19c] border border-[#d4af37]/40 text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 transition-all"
+                type="button"
+                disabled
+                title="Royal Shop — coming soon"
+                className="w-full sm:w-auto px-5 py-3.5 rounded-full bg-[#23040a] text-[#fae19c] border border-[#d4af37]/40 text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 cursor-not-allowed"
               >
                 <ShoppingBag className="w-4 h-4 text-[#d4af37]" />
                 <span>Royal Merch</span>
