@@ -225,18 +225,18 @@ export default function RoyalRegistrationForm() {
   };
 
   return (
-    <section id="registration" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
+    <section id="registration" className="section-shell registry-section relative">
       {/* Decorative Title Header */}
-      <div data-reveal className="page-reveal text-center space-y-3 mb-12">
-        <KingdomArtwork kind="scroll" className="mx-auto mb-5 h-24 w-48 sm:h-28 sm:w-56" sizes="(min-width: 640px) 224px, 192px" />
+      <div data-reveal className="page-reveal text-center space-y-3 mb-8">
+        <KingdomArtwork kind="scroll" className="mx-auto mb-4 h-20 w-40 sm:h-24 sm:w-48" sizes="(min-width: 640px) 192px, 160px" />
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3a0610] border border-[#d4af37]/40 text-xs font-bold text-[#fae19c] uppercase tracking-wider">
           <ScrollText className="w-3.5 h-3.5 text-[#d4af37]" />
           <span>Official Registration Portal</span>
         </div>
-        <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-[#ffffff]">
+        <h2 className="section-title text-[#ffffff]">
           Inscribe In The <span className="gold-text">Royal Registry</span>
         </h2>
-        <p className="text-sm sm:text-base text-[#f6eedb]/80 max-w-2xl mx-auto">
+        <p className="section-description text-[#f6eedb]/75 max-w-2xl mx-auto">
           Complete this proclamation form to register your interest in joining the grand gathering of Kandy Roar 7.0.
         </p>
       </div>

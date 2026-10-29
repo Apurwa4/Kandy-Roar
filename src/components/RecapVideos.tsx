@@ -44,22 +44,22 @@ export default function RecapVideos() {
   };
 
   return (
-    <section id="recaps" aria-labelledby="recaps-heading" className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+    <section id="recaps" aria-labelledby="recaps-heading" className="section-shell relative">
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-12 top-24 h-64 rounded-full bg-[#750f24]/15 blur-3xl" />
-      <div data-reveal className="page-reveal relative mb-8 flex flex-col items-start justify-between gap-6 sm:mb-10 md:flex-row md:items-center">
+      <div data-reveal className="page-reveal relative mb-8 flex flex-col items-start justify-between gap-5 md:flex-row md:items-center">
         <div className="max-w-2xl space-y-4">
         <p className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#d4af37] sm:text-xs">
           <Film aria-hidden="true" className="h-4 w-4" />
           Moments that made us
         </p>
-        <h2 id="recaps-heading" className="font-heading text-3xl font-bold leading-tight text-[#f6eedb] sm:text-5xl">
+        <h2 id="recaps-heading" className="section-title text-[#f6eedb]">
           Relive the <span className="gold-text">Roar.</span>
         </h2>
-        <p className="text-sm leading-relaxed text-[#f6eedb]/70 sm:text-base">
+        <p className="section-description text-[#f6eedb]/70">
           From the energy of our last Kandy Roar to the celebrations of Nova 25&apos;, revisit the moments that bring us together.
         </p>
         </div>
-        <KingdomArtwork kind="elephant" className="h-32 w-44 self-center md:h-44 md:w-56" sizes="(min-width: 768px) 224px, 176px" />
+        <KingdomArtwork kind="elephant" className="h-28 w-40 self-center md:h-36 md:w-48" sizes="(min-width: 768px) 192px, 160px" />
       </div>
 
       <div className="relative grid gap-6 lg:grid-cols-2">

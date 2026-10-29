@@ -95,15 +95,15 @@ export default function CommunityPhoto({ kind }: { kind: keyof typeof stories })
   }, []);
 
   return (
-    <section ref={sectionRef} aria-labelledby={`community-${kind}`} className="community-photo relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
-      <div className="mb-7 flex items-end justify-between gap-6">
+    <section ref={sectionRef} aria-labelledby={`community-${kind}`} className="community-photo section-shell relative">
+      <div className="mb-6 flex items-end justify-between gap-6">
         <div className="max-w-2xl">
           {kind === "group" && <p className="mb-3 flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#d4af37] sm:text-xs">
             <span aria-hidden="true" className="h-px w-8 bg-[#d4af37]/60" />
             {story.label}
           </p>}
-          <h2 id={`community-${kind}`} className="font-heading text-3xl font-bold leading-tight text-[#fae19c] sm:text-4xl">{story.title}</h2>
-          <p className="mt-3 text-sm leading-relaxed text-[#f6eedb]/70 sm:text-base">{story.description}</p>
+          <h2 id={`community-${kind}`} className="section-title text-[#fae19c]">{story.title}</h2>
+          <p className="section-description mt-3 text-[#f6eedb]/70">{story.description}</p>
         </div>
       </div>
 

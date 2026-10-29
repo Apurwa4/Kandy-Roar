@@ -9,6 +9,7 @@ import Footer from "@/components/Footer";
 import CommunityPhoto from "@/components/CommunityPhoto";
 import RecapVideos from "@/components/RecapVideos";
 import PageAtmosphere from "@/components/PageAtmosphere";
+import SectionDivider from "@/components/SectionDivider";
 
 export default function Home() {
   const handleScrollToRegister = () => {
@@ -39,15 +40,20 @@ export default function Home() {
           onRegisterClick={handleScrollToRegister}
         />
 
+        <SectionDivider />
         <CommunityPhoto kind="group" />
+        <SectionDivider />
 
         {/* The 4 Royal Pillars of Kandy Roar 7.0 */}
         <RoyalDecree />
 
+        <SectionDivider />
         <RecapVideos />
 
+        <SectionDivider />
         {/* The Royal Registration Form Portal */}
         <RoyalRegistrationForm />
+        <SectionDivider />
         <CommunityPhoto kind="eb" />
         <CommunityPhoto kind="members" />
       </main>

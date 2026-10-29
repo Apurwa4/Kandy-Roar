@@ -1,17 +1,9 @@
 "use client";
 
 import React from "react";
-import { useRegistrationCountdown } from "@/lib/use-registration-countdown";
 import Image from "next/image";
-import {
-  Calendar,
-  MapPin,
-  Clock,
-  ArrowDown,
-  ScrollText,
-  ShoppingBag,
-  Volume2,
-} from "lucide-react";
+import { ArrowDown, Calendar, Clock, MapPin, ScrollText, ShoppingBag } from "lucide-react";
+import { useRegistrationCountdown } from "@/lib/use-registration-countdown";
 
 interface HeroProps {
   onRegisterClick: () => void;
@@ -19,160 +11,105 @@ interface HeroProps {
 
 export default function Hero({ onRegisterClick }: HeroProps) {
   const timeLeft = useRegistrationCountdown();
+  const units = [
+    { label: "Days", value: timeLeft.days },
+    { label: "Hours", value: timeLeft.hours },
+    { label: "Minutes", value: timeLeft.minutes },
+    { label: "Seconds", value: timeLeft.seconds },
+  ];
 
   return (
-    <section id="hero" className="relative pt-28 pb-16 md:pt-36 md:pb-24 overflow-hidden">
-      {/* Background Soft Royal Ambient Glows */}
-      <div className="absolute top-1/3 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[650px] h-[650px] bg-gradient-to-br from-[#750f24]/25 via-[#d4af37]/10 to-transparent rounded-full blur-3xl pointer-events-none" />
-      <div className="absolute top-20 right-10 w-96 h-96 bg-[#580b1a]/30 rounded-full blur-3xl pointer-events-none" />
-
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative z-10">
-        
-        {/* Main Grid: Clean & Balanced */}
-        <div className="grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-8 items-center">
-          
-          {/* Left Column: Clean, Spacious Hierarchy */}
-          <div className="lg:col-span-7 text-center lg:text-left space-y-6">
-            
-            {/* 10th Anniversary Pill */}
-            <div className="inline-flex items-center gap-2.5 px-4 py-1.5 rounded-full bg-[#23040a] border border-[#d4af37]/40 shadow-md">
-              <span className="text-xs font-semibold tracking-wider text-[#fae19c]">
-                AIESEC in Kandy • Celebrating 10 Glorious Years
-              </span>
-            </div>
-
-            {/* Official Kandy Roar Logo */}
-            <div className="pt-1">
-              <div className="relative w-full max-w-sm sm:max-w-md h-20 sm:h-24 mx-auto lg:mx-0">
-                <Image
-                  src="/images/kandy-roar-logo-transparent.png"
-                  alt="Kandy Roar Leadership Development Seminar 2026"
-                  fill
-                  className="object-contain object-center lg:object-left"
-                  priority
-                />
-              </div>
-            </div>
-
-            {/* Royal proclamation headline */}
-            <div className="space-y-1 overflow-visible">
-              <div aria-label={timeLeft.isLive ? "The Gates Are Open" : "The Gates Open Soon"} className="royal-headline text-3xl sm:text-4xl md:text-5xl font-bold tracking-wide">
-                {["The Gates", timeLeft.isLive ? "Are Open" : "Open Soon"].map((phrase, index) => (
-                  <React.Fragment key={phrase}>
-                    {index > 0 && " "}
-                    <span aria-hidden="true" className="royal-wave-word gold-text" style={{ animationDelay: `${index * -2}s` }}>{phrase}</span>
-                  </React.Fragment>
-                ))}
-              </div>
-              <div className="flex items-center justify-center lg:justify-start gap-2 text-[11px] tracking-widest uppercase font-mono text-[#d4af37]/90 font-medium">
-                <Volume2 className="w-3.5 h-3.5 text-[#d4af37]" />
-                <span>A Royal Proclamation to All Villagers</span>
-              </div>
-            </div>
-
-            {/* Proclamation Copy: Clean and unboxed */}
-            <p className="text-sm sm:text-base text-[#f6eedb]/85 leading-relaxed max-w-xl mx-auto lg:mx-0 font-normal">
-              The royal gates are opening. Join us for the landmark 7th edition of the Leadership Development Seminar. Answer the royal call, fulfil your <span className="text-[#fae19c] font-semibold">Royal Duty</span>, and inscribe your name in the kingdom&apos;s history.
+    <section id="hero" aria-labelledby="hero-heading" className="relative overflow-hidden pb-10 pt-28 sm:pb-12 sm:pt-32 lg:pt-36">
+      <div aria-hidden="true" className="pointer-events-none absolute -right-32 top-24 h-[500px] w-[500px] rounded-full bg-[#750f24]/20 blur-3xl" />
+      <div className="relative mx-auto max-w-6xl px-4 sm:px-6 lg:px-8">
+        <div className="grid items-center gap-10 lg:grid-cols-12 lg:gap-8">
+          <div className="space-y-5 text-center lg:col-span-7 lg:text-left">
+            <p className="inline-flex items-center rounded-full border border-[#d4af37]/30 bg-[#23040a]/70 px-4 py-2 text-[10px] font-semibold tracking-[0.08em] text-[#fae19c] sm:text-xs">
+              AIESEC in Kandy · Celebrating 10 Glorious Years
             </p>
 
-            {/* Event Dates & Realm - Minimalist Tags */}
-            <div className="flex flex-wrap items-center justify-center lg:justify-start gap-4 text-xs text-[#fae19c]">
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#23040a] border border-[#d4af37]/30">
-                <Calendar className="w-4 h-4 text-[#d4af37]" />
-                <span><strong>9th – 10th January</strong> (Tentative)</span>
-              </div>
-              <div className="flex items-center gap-2 px-3 py-1.5 rounded-lg bg-[#23040a] border border-[#d4af37]/30">
-                <MapPin className="w-4 h-4 text-[#d4af37]" />
-                <span>Kingdom of Kandy</span>
-              </div>
+            <Image
+              src="/images/kandy-roar-logo-transparent.png"
+              alt="Kandy Roar Leadership Development Seminar 2026"
+              width={1722}
+              height={913}
+              sizes="(min-width: 640px) 448px, 90vw"
+              priority
+              className="mx-auto h-auto w-full max-w-[22rem] drop-shadow-[0_12px_40px_rgba(212,175,55,0.1)] sm:max-w-md lg:mx-0"
+            />
+
+            <div className="space-y-3">
+              <h1 id="hero-heading" className="font-heading text-2xl font-bold leading-tight sm:text-3xl lg:text-4xl">
+                <span className="gold-text">{timeLeft.isLive ? "The Gates Are Open" : "The Gates Open Soon"}</span>
+              </h1>
+              <p className="mx-auto max-w-lg text-sm leading-relaxed text-[#f6eedb]/75 sm:text-base lg:mx-0">
+                Join the 7th edition of the Leadership Development Seminar.
+                Two days of leadership, connection, and Kandyan spirit.
+                Answer the royal call and become part of the kingdom&apos;s next chapter.
+              </p>
             </div>
 
-            {/* Countdown Bar: Streamlined and Minimal */}
-            <div className="pt-2">
-              <div className="inline-flex flex-col sm:flex-row items-center gap-4 p-3 px-5 rounded-2xl bg-[#1c050b] border border-[#d4af37]/35 shadow-xl">
-                <div className="flex items-center gap-2 text-xs font-semibold text-[#fae19c]">
-                  <Clock className="w-4 h-4 text-[#d4af37]" />
-                  <span>{timeLeft.isLive ? "Registrations Open Now" : "Registrations Open: 31st Oct"}</span>
-                </div>
+            <div className="flex flex-wrap items-center justify-center gap-x-5 gap-y-2 text-xs text-[#fae19c]/85 lg:justify-start">
+              <span className="inline-flex items-center gap-2"><Calendar aria-hidden="true" className="h-4 w-4 text-[#d4af37]" />9–10 January · Tentative</span>
+              <span className="inline-flex items-center gap-2"><MapPin aria-hidden="true" className="h-4 w-4 text-[#d4af37]" />Kingdom of Kandy</span>
+            </div>
 
-                {!timeLeft.isLive && (
-                  <div role="timer" aria-label="Time until registration opens" className="flex items-center gap-2 font-mono text-sm text-[#ffffff]">
-                    <div className="text-center px-2 py-0.5 rounded bg-[#2b0811] border border-[#d4af37]/20">
-                      <span className="font-bold text-[#fae19c]">{timeLeft.days}</span>
-                      <span className="text-[9px] text-[#d4af37] block uppercase">d</span>
-                    </div>
-                    <span>:</span>
-                    <div className="text-center px-2 py-0.5 rounded bg-[#2b0811] border border-[#d4af37]/20">
-                      <span className="font-bold text-[#fae19c]">{timeLeft.hours}</span>
-                      <span className="text-[9px] text-[#d4af37] block uppercase">h</span>
-                    </div>
-                    <span>:</span>
-                    <div className="text-center px-2 py-0.5 rounded bg-[#2b0811] border border-[#d4af37]/20">
-                      <span className="font-bold text-[#fae19c]">{timeLeft.minutes}</span>
-                      <span className="text-[9px] text-[#d4af37] block uppercase">m</span>
-                    </div>
-                    <span>:</span>
-                    <div className="text-center px-2 py-0.5 rounded bg-[#2b0811] border border-[#d4af37]/20">
-                      <span className="font-bold text-[#fae19c]">{timeLeft.seconds}</span>
-                      <span className="text-[9px] text-[#d4af37] block uppercase">s</span>
-                    </div>
+            <div className="hero-registration-panel mx-auto max-w-xl rounded-2xl p-5 text-left sm:p-6 lg:mx-0">
+              <div className="flex items-center gap-2 text-xs font-semibold text-[#fae19c] sm:text-sm">
+                <Clock aria-hidden="true" className="h-4 w-4 shrink-0 text-[#d4af37]" />
+                <p>{timeLeft.isLive ? "Your next chapter starts here" : "Registration opens 31 October"}</p>
+              </div>
+
+              {!timeLeft.isLive && (
+                <>
+                  <div role="timer" aria-label="Time until registration opens" className="mt-4 grid grid-cols-4 gap-2 sm:gap-3">
+                    {units.map((unit) => (
+                      <div key={unit.label} className="rounded-xl border border-[#d4af37]/20 bg-[#110609]/60 px-1 py-3 text-center">
+                        <span className="block font-mono text-2xl font-semibold tabular-nums text-[#fae19c] sm:text-3xl">{String(unit.value).padStart(2, "0")}</span>
+                        <span className="mt-1 block text-[9px] font-medium uppercase tracking-[0.12em] text-[#f6eedb]/60 sm:text-[10px]">{unit.label}</span>
+                      </div>
+                    ))}
                   </div>
-                )}
-              </div>
-            </div>
+                  <p className="mt-3 text-center text-[11px] text-[#f6eedb]/55">31 October 2026 · 12:00 AM · Sri Lanka time</p>
+                </>
+              )}
 
-            {/* CTAs */}
-            <div className="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-3">
-              <button
-                onClick={onRegisterClick}
-                className="w-full sm:w-auto gold-btn px-8 py-3.5 rounded-full text-xs sm:text-sm uppercase tracking-wider font-extrabold flex items-center justify-center gap-2.5 shadow-xl hover:scale-105 transition-all"
-              >
-                <ScrollText className="w-4 h-4" />
-                <span>Inscribe in Royal Registry</span>
-                <ArrowDown className="w-3.5 h-3.5 animate-bounce" />
-              </button>
+              {timeLeft.isLive && <p className="mt-3 text-sm leading-relaxed text-[#f6eedb]/70">Registrations are now open. Take your place at Kandy Roar 7.0.</p>}
 
               <button
                 type="button"
-                disabled
-                title="Royal Shop — coming soon"
-                className="w-full sm:w-auto px-5 py-3.5 rounded-full bg-[#23040a] text-[#fae19c] border border-[#d4af37]/40 text-xs sm:text-sm font-semibold tracking-wide flex items-center justify-center gap-2 cursor-not-allowed"
+                onClick={onRegisterClick}
+                className="gold-btn mt-5 flex min-h-12 w-full items-center justify-center gap-2.5 rounded-xl px-5 py-3.5 text-sm font-bold focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#fae19c]"
               >
-                <ShoppingBag className="w-4 h-4 text-[#d4af37]" />
-                <span>Royal Merch</span>
-                <span className="text-[9px] uppercase font-bold px-1.5 py-0.5 rounded bg-[#d4af37] text-[#23040a]">
-                  Soon
-                </span>
+                <ScrollText aria-hidden="true" className="h-4 w-4" />
+                <span>{timeLeft.isLive ? "Enter the Royal Registry" : "View the Royal Registry"}</span>
+                <ArrowDown aria-hidden="true" className="h-4 w-4" />
               </button>
             </div>
 
+            <div className="flex items-center justify-center gap-3 lg:justify-start">
+              <button type="button" disabled title="Royal Shop — coming soon" className="inline-flex cursor-not-allowed items-center gap-2 rounded-full border border-[#d4af37]/20 px-4 py-2 text-xs text-[#f6eedb]/60">
+                <ShoppingBag aria-hidden="true" className="h-3.5 w-3.5 text-[#d4af37]/70" />
+                Royal Shop
+                <span className="rounded-full bg-[#d4af37]/10 px-2 py-0.5 text-[9px] font-semibold uppercase tracking-wide text-[#d4af37]">Coming soon</span>
+              </button>
+            </div>
           </div>
 
-          {/* Right Column: Seamlessly Cutout Kandyan Royal Figures */}
-          <div className="lg:col-span-5 flex justify-center items-center relative">
-            
-            {/* Subtle Royal Aura behind the figures */}
-            <div className="absolute w-[360px] h-[360px] bg-gradient-to-tr from-[#750f24]/40 via-[#d4af37]/15 to-transparent rounded-full blur-2xl pointer-events-none" />
-
-            {/* The Cutout Figures */}
-            <div className="relative w-full max-w-sm sm:max-w-md aspect-[625/620] transition-transform duration-500 hover:scale-105">
+          <div className="relative flex items-center justify-center lg:col-span-5">
+            <div aria-hidden="true" className="pointer-events-none absolute h-72 w-72 rounded-full bg-[#d4af37]/8 blur-3xl" />
+            <div className="relative aspect-[625/620] w-full max-w-[19rem] sm:max-w-sm lg:max-w-md">
               <Image
                 src="/images/kandyan-figures-cutout.png"
-                alt="Kandyan Royal Proclaimer and Traditional Geta Beraya Drummer"
+                alt="Kandyan royal proclaimer and traditional Geta Beraya drummer"
                 fill
                 priority
-                sizes="(max-width: 768px) 100vw, 480px"
-                className="object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.8)]"
+                sizes="(min-width: 1024px) 448px, (min-width: 640px) 384px, 304px"
+                className="object-contain drop-shadow-[0_15px_30px_rgba(0,0,0,0.65)]"
               />
-              
-              {/* Subtle floor shadow reflection */}
-              <div className="absolute -bottom-2 left-1/2 -translate-x-1/2 w-4/5 h-6 bg-black/60 blur-md rounded-full pointer-events-none" />
             </div>
-
           </div>
-
         </div>
-
       </div>
     </section>
   );

@@ -22,32 +22,33 @@ export default function Navbar() {
           {/* Logo & Brand using the full official Kandy Roar logo */}
           <div
             onClick={() => scrollToSection("hero")}
-            className="flex items-center gap-3.5 cursor-pointer group"
+            className="flex min-w-0 items-center gap-2.5 cursor-pointer group"
           >
-            <div className="relative w-16 sm:w-20 h-12 shrink-0 group-hover:scale-105 transition-transform">
+            <div className="relative w-12 sm:w-20 h-10 sm:h-12 shrink-0 group-hover:scale-105 transition-transform">
                 <Image
                   src="/images/kandy-roar-logo-transparent.png"
                   alt="Kandy Roar Official Logo"
                   fill
-                  sizes="(min-width: 640px) 80px, 64px"
+                  sizes="(min-width: 640px) 80px, 48px"
                   className="object-contain"
                   priority
                 />
             </div>
-            <div className="flex flex-col">
+            <div className="flex min-w-0 flex-col">
               <div className="flex items-center gap-2">
-                <span className="font-heading font-black tracking-widest text-lg sm:text-xl text-[#f6eedb] group-hover:text-[#fae19c] transition-colors">
+                <span className="font-heading font-bold tracking-wide text-sm sm:text-xl text-[#f6eedb] group-hover:text-[#fae19c] transition-colors">
                   KANDY ROAR <span className="text-[#d4af37]">7.0</span>
                 </span>
               </div>
-              <span className="text-[11px] text-[#d4af37]/80 tracking-wider uppercase font-medium">
+              <span className="hidden xl:block text-[10px] text-[#d4af37]/80 tracking-wide uppercase font-medium">
                 AIESEC in Kandy • LEADERSHIP DEVELOPMENT SEMINAR
               </span>
+              <span className="text-[9px] sm:text-[10px] text-[#d4af37]/80 uppercase tracking-wide xl:hidden">AIESEC in Kandy · LDS</span>
             </div>
           </div>
 
           {/* Desktop Nav Links */}
-          <nav className="hidden md:flex items-center gap-7">
+          <nav className="hidden xl:flex items-center gap-5">
             <button
               onClick={() => scrollToSection("proclamation")}
               className="text-sm font-medium text-[#f6eedb]/85 hover:text-[#d4af37] transition-colors flex items-center gap-2"
@@ -93,7 +94,7 @@ export default function Navbar() {
           </nav>
 
           {/* Mobile Menu Button */}
-          <div className="flex md:hidden items-center gap-2">
+          <div className="flex xl:hidden shrink-0 items-center gap-2">
             <button
               type="button"
               disabled
@@ -106,6 +107,9 @@ export default function Navbar() {
 
             <button
               onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
+              aria-label={mobileMenuOpen ? "Close navigation menu" : "Open navigation menu"}
+              aria-expanded={mobileMenuOpen}
+              aria-controls="mobile-navigation"
               className="p-2 rounded-lg bg-[#23040a] text-[#fae19c] border border-[#d4af37]/30 focus:outline-none"
             >
               {mobileMenuOpen ? <X className="w-6 h-6" /> : <Menu className="w-6 h-6" />}
@@ -116,7 +120,7 @@ export default function Navbar() {
 
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-[#1f060f] border-b border-[#d4af37]/30 px-4 pt-3 pb-6 space-y-3 shadow-2xl">
+        <div id="mobile-navigation" className="xl:hidden bg-[#1f060f] border-b border-[#d4af37]/30 px-4 pt-3 pb-6 space-y-3 shadow-2xl">
           <button
             onClick={() => scrollToSection("proclamation")}
             className="w-full text-left py-2.5 px-3 rounded-md text-[#f6eedb] hover:bg-[#3a0610] flex items-center gap-2.5 text-sm"

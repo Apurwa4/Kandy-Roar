@@ -37,25 +37,25 @@ export default function RoyalDecree() {
   ];
 
   return (
-    <section id="proclamation" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-      <div data-reveal className="page-reveal mb-10 flex flex-col-reverse items-center justify-between gap-5 md:mb-12 md:flex-row md:gap-10">
+    <section id="proclamation" className="section-shell relative">
+      <div data-reveal className="page-reveal mb-8 flex flex-col-reverse items-center justify-between gap-5 md:flex-row md:gap-8">
         <div className="space-y-3 text-center md:max-w-3xl md:text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3a0610] border border-[#d4af37]/40 text-xs font-bold text-[#fae19c] uppercase tracking-wider">
           <Shield className="w-3.5 h-3.5 text-[#d4af37]" />
           <span>The Royal Experience</span>
         </div>
-        <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-black text-[#ffffff]">
+        <h2 className="section-title text-[#ffffff]">
           The Pillars of <span className="gold-text">Kandy Roar 7.0</span>
         </h2>
-        <p className="text-sm sm:text-base text-[#f6eedb]/80 max-w-2xl mx-auto">
+        <p className="section-description text-[#f6eedb]/75 max-w-2xl mx-auto">
           An immersive two-day residential seminar rooted in Kandyan heritage, designed to ignite
           your leadership journey.
         </p>
         </div>
-        <KingdomArtwork kind="dancer" className="h-40 w-28 md:h-60 md:w-44" sizes="(min-width: 768px) 176px, 112px" />
+        <KingdomArtwork kind="dancer" className="h-32 w-24 md:h-44 md:w-32" sizes="(min-width: 768px) 128px, 96px" />
       </div>
 
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
         {pillars.map((p, idx) => {
           const IconComponent = p.icon;
           return (
@@ -74,7 +74,7 @@ export default function RoyalDecree() {
                 <div className="text-xs text-[#d4af37] font-semibold mt-0.5 mb-2.5">
                   {p.subtitle}
                 </div>
-                <p className="text-xs text-[#f6eedb]/75 leading-relaxed">
+                <p className="text-sm text-[#f6eedb]/75 leading-relaxed">
                   {p.description}
                 </p>
               </div>
