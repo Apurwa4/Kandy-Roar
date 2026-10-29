@@ -42,7 +42,10 @@ export default function Hero({ onRegisterClick }: HeroProps) {
               <h1 id="hero-heading" className="font-heading text-2xl font-bold leading-tight sm:text-3xl lg:text-4xl">
                 <span className="gold-text">{timeLeft.isLive ? "The Gates Are Open" : "The Gates Open Soon"}</span>
               </h1>
-              <p className="mx-auto max-w-lg text-sm leading-relaxed text-[#f6eedb]/75 sm:text-base lg:mx-0">
+              <p className="mx-auto max-w-xs text-sm leading-relaxed text-[#f6eedb]/75 sm:hidden">
+                Two days of leadership, connection, and Kandyan spirit.
+              </p>
+              <p className="mx-auto hidden max-w-lg text-base leading-relaxed text-[#f6eedb]/75 sm:block lg:mx-0">
                 Join the 7th edition of the Leadership Development Seminar.
                 Two days of leadership, connection, and Kandyan spirit.
                 Answer the royal call and become part of the kingdom&apos;s next chapter.
