@@ -10,6 +10,7 @@ import CommunityPhoto from "@/components/CommunityPhoto";
 import RecapVideos from "@/components/RecapVideos";
 import PageAtmosphere from "@/components/PageAtmosphere";
 import SectionDivider from "@/components/SectionDivider";
+import ConferenceTeam from "@/components/ConferenceTeam";
 
 export default function Home() {
   const handleScrollToRegister = () => {
@@ -56,6 +57,8 @@ export default function Home() {
         <SectionDivider />
         <CommunityPhoto kind="eb" />
         <CommunityPhoto kind="members" />
+        <SectionDivider />
+        <ConferenceTeam />
       </main>
 
       {/* Footer */}

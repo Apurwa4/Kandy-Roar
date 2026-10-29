@@ -2,7 +2,7 @@
 
 import React, { useState } from "react";
 import Image from "next/image";
-import { ScrollText, ShoppingBag, Menu, X, FileCheck2 } from "lucide-react";
+import { ScrollText, ShoppingBag, Menu, X, FileCheck2, Users } from "lucide-react";
 
 export default function Navbar() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -49,6 +49,13 @@ export default function Navbar() {
 
           {/* Desktop Nav Links */}
           <nav className="hidden xl:flex items-center gap-5">
+            <button
+              onClick={() => scrollToSection("conference-team")}
+              className="text-sm font-medium text-[#f6eedb]/85 hover:text-[#d4af37] transition-colors flex items-center gap-2"
+            >
+              <Users className="w-4 h-4 text-[#d4af37]" />
+              <span>Conference Team</span>
+            </button>
             <button
               onClick={() => scrollToSection("proclamation")}
               className="text-sm font-medium text-[#f6eedb]/85 hover:text-[#d4af37] transition-colors flex items-center gap-2"
@@ -121,6 +128,13 @@ export default function Navbar() {
       {/* Mobile Drawer */}
       {mobileMenuOpen && (
         <div id="mobile-navigation" className="xl:hidden bg-[#1f060f] border-b border-[#d4af37]/30 px-4 pt-3 pb-6 space-y-3 shadow-2xl">
+          <button
+            onClick={() => scrollToSection("conference-team")}
+            className="w-full text-left py-2.5 px-3 rounded-md text-[#f6eedb] hover:bg-[#3a0610] flex items-center gap-2.5 text-sm"
+          >
+            <Users className="w-4 h-4 text-[#d4af37]" />
+            <span>Conference Team</span>
+          </button>
           <button
             onClick={() => scrollToSection("proclamation")}
             className="w-full text-left py-2.5 px-3 rounded-md text-[#f6eedb] hover:bg-[#3a0610] flex items-center gap-2.5 text-sm"

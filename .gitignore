@@ -42,3 +42,4 @@ next-env.d.ts
 
 # delegate data
 data/registrations.json
+/.team-work/

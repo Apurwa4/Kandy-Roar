@@ -19,6 +19,15 @@
 
 .section-shell.registry-section { max-width: 64rem; }
 
+.team-card {
+  background: linear-gradient(160deg, #430b19, #23040a 75%);
+  box-shadow: 0 12px 35px -25px rgba(212, 175, 55, 0.35);
+}
+
+.team-portrait {
+  background: radial-gradient(ellipse at 50% 65%, rgba(212, 175, 55, 0.2), transparent 68%);
+}
+
 .section-title {
   font-family: var(--font-heading), Georgia, serif;
   font-size: clamp(1.75rem, 3.6vw, 2.75rem);
