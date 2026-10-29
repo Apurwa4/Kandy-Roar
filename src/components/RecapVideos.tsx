@@ -2,6 +2,7 @@
 
 import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
+import KingdomArtwork from "@/components/KingdomArtwork";
 import { ArrowUpRight, Film, Play, X } from "lucide-react";
 
 const recaps = [
@@ -35,7 +36,8 @@ export default function RecapVideos() {
   return (
     <section id="recaps" aria-labelledby="recaps-heading" className="relative mx-auto max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
       <div aria-hidden="true" className="pointer-events-none absolute inset-x-12 top-24 h-64 rounded-full bg-[#750f24]/15 blur-3xl" />
-      <div className="relative mb-8 max-w-2xl space-y-4 sm:mb-10">
+      <div className="relative mb-8 flex flex-col items-start justify-between gap-6 sm:mb-10 md:flex-row md:items-center">
+        <div className="max-w-2xl space-y-4">
         <p className="flex items-center gap-3 text-[10px] font-semibold uppercase tracking-[0.25em] text-[#d4af37] sm:text-xs">
           <Film aria-hidden="true" className="h-4 w-4" />
           A look back at our last gathering
@@ -46,6 +48,8 @@ export default function RecapVideos() {
         <p className="text-sm leading-relaxed text-[#f6eedb]/70 sm:text-base">
           Two days. Countless memories. Take a look at the energy, connections, and spirit of Kandy Roar before writing your own chapter.
         </p>
+        </div>
+        <KingdomArtwork kind="elephant" className="h-32 w-44 self-center md:h-44 md:w-56" sizes="(min-width: 768px) 224px, 176px" />
       </div>
 
       <div className="relative grid gap-6 lg:grid-cols-2">

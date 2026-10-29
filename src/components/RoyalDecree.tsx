@@ -1,6 +1,7 @@
 "use client";
 
 import React from "react";
+import KingdomArtwork from "@/components/KingdomArtwork";
 import { Shield, Award, Users, Compass, Music } from "lucide-react";
 
 export default function RoyalDecree() {
@@ -37,7 +38,8 @@ export default function RoyalDecree() {
 
   return (
     <section id="proclamation" className="py-20 px-4 sm:px-6 lg:px-8 max-w-7xl mx-auto relative">
-      <div className="text-center space-y-3 mb-14">
+      <div className="mb-10 flex flex-col-reverse items-center justify-between gap-5 md:mb-12 md:flex-row md:gap-10">
+        <div className="space-y-3 text-center md:max-w-3xl md:text-left">
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3a0610] border border-[#d4af37]/40 text-xs font-bold text-[#fae19c] uppercase tracking-wider">
           <Shield className="w-3.5 h-3.5 text-[#d4af37]" />
           <span>The Royal Experience</span>
@@ -49,6 +51,8 @@ export default function RoyalDecree() {
           An immersive two-day residential seminar rooted in Kandyan heritage, designed to ignite
           your leadership journey.
         </p>
+        </div>
+        <KingdomArtwork kind="dancer" className="h-40 w-28 md:h-60 md:w-44" sizes="(min-width: 768px) 176px, 112px" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">

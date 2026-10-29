@@ -2,6 +2,7 @@
 
 import React, { useRef, useState } from "react";
 import Image from "next/image";
+import KingdomArtwork from "@/components/KingdomArtwork";
 import confetti from "canvas-confetti";
 import { useRegistrationCountdown } from "@/lib/use-registration-countdown";
 import {
@@ -227,6 +228,7 @@ export default function RoyalRegistrationForm() {
     <section id="registration" className="relative py-20 px-4 sm:px-6 lg:px-8 max-w-5xl mx-auto">
       {/* Decorative Title Header */}
       <div className="text-center space-y-3 mb-12">
+        <KingdomArtwork kind="scroll" className="mx-auto mb-5 h-24 w-48 sm:h-28 sm:w-56" sizes="(min-width: 640px) 224px, 192px" />
         <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-[#3a0610] border border-[#d4af37]/40 text-xs font-bold text-[#fae19c] uppercase tracking-wider">
           <ScrollText className="w-3.5 h-3.5 text-[#d4af37]" />
           <span>Official Registration Portal</span>
