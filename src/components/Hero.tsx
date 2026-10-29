@@ -33,9 +33,9 @@ export default function Hero({ onRegisterClick }: HeroProps) {
               alt="Kandy Roar Leadership Development Seminar 2026"
               width={1722}
               height={913}
-              sizes="(min-width: 640px) 448px, 90vw"
+              sizes="(min-width: 640px) 320px, 256px"
               priority
-              className="mx-auto h-auto w-full max-w-[22rem] drop-shadow-[0_12px_40px_rgba(212,175,55,0.1)] sm:max-w-md lg:mx-0"
+              className="mx-auto h-auto w-full max-w-64 drop-shadow-[0_12px_40px_rgba(212,175,55,0.1)] sm:max-w-80 lg:mx-0"
             />
 
             <div className="space-y-3">
