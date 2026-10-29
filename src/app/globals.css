@@ -255,6 +255,32 @@ body {
   margin-bottom: 0.5rem;
 }
 
+/* Gentle bounce for decorative Kandyan illustrations without moving the layout. */
+@keyframes kingdomArtworkBounce {
+  0%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-10px); }
+  65% { transform: translateY(-3px); }
+  80% { transform: translateY(-6px); }
+}
+
+.kingdom-artwork-bounce {
+  animation: kingdomArtworkBounce 4.5s ease-in-out infinite;
+}
+
+.kingdom-artwork-elephant {
+  animation-duration: 5.5s;
+  animation-delay: -1.8s;
+}
+
+.kingdom-artwork-scroll {
+  animation-duration: 5s;
+  animation-delay: -3s;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .kingdom-artwork-bounce { animation: none; }
+}
+
 /* Scrollbar */
 ::-webkit-scrollbar {
   width: 9px;

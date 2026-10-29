@@ -22,7 +22,7 @@ export default function KingdomArtwork({
         alt=""
         fill
         sizes={sizes}
-        className="object-contain drop-shadow-[0_10px_24px_rgba(212,175,55,0.12)]"
+        className={`kingdom-artwork-bounce kingdom-artwork-${kind} object-contain drop-shadow-[0_10px_24px_rgba(212,175,55,0.12)]`}
       />
     </div>
   );
