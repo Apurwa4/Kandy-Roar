@@ -52,7 +52,7 @@ export default function Footer() {
 
             <div className="w-fit max-w-full py-4 pr-6">
               <Image
-                src="/images/aiesec-footer-logo.jpeg"
+                src="/images/aiesec-footer-logo.png"
                 alt="AIESEC"
                 width={1265}
                 height={259}
