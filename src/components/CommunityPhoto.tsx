@@ -52,9 +52,6 @@ export function TogetherWeRoar() {
               placeholder="blur"
               className="h-auto w-full rounded-xl"
             />
-            <figcaption className="px-2 pb-1 pt-3 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d4af37]">
-              {stories[kind].label}
-            </figcaption>
           </figure>
         ))}
       </div>
