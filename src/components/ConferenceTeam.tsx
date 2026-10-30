@@ -9,7 +9,7 @@ type Group = { title: string; members: Member[] };
 
 const portrait = (name: string, role: string): Member => ({ name, role, image: `/images/team/${name.toLowerCase()}.png` });
 const eb: Group[] = [
-  { title: "President", members: [{ name: "Lahiru Dinusha", role: "EB President", image: "/images/team/lahiru-dinusha.png" }] },
+  { title: "President", members: [{ name: "Lahiru", role: "LCP", image: "/images/team/lahiru-dinusha.png" }] },
   { title: "Vice Presidents", members: [
     { name: "Shahnaas", role: "LCVP · BD", image: "/images/team/shahnaas.png" },
     { name: "Sayuni", role: "LCVP · EM", image: "/images/team/sayuni.png" },
@@ -19,7 +19,7 @@ const eb: Group[] = [
     { name: "Ihara", role: "LCVP · iGV B2B", image: "/images/team/ihara.png" },
     { name: "Inuri", role: "LCVP · iGV M & IR", image: "/images/team/inuri.png" },
     { name: "Nikila", role: "LCVP · iGV VD", image: "/images/team/nikila.png" },
-    { name: "Thushanth", role: "LCVP · Marketing", image: "/images/team/thushanth.png" },
+    { name: "Thushanth", role: "LCVP · MKT", image: "/images/team/thushanth.png" },
     { name: "Zahra", role: "LCVP · oGTa", image: "/images/team/zahra.png" },
     { name: "Jayani", role: "LCVP · oGTe", image: "/images/team/jayani.png" },
     { name: "Devmi", role: "LCVP · oGV B2B & B2C", image: "/images/team/devmi.png" },
@@ -53,7 +53,7 @@ function MemberCard({ member }: { member: Member }) {
       </div>
       <div className="relative min-h-24 flex-1 border-t border-[#d4af37]/25 bg-[#1c060d]/90 px-3 py-4">
         <h5 className="font-heading text-base font-bold text-[#f6eedb]">{member.name}</h5>
-        <p className="mt-1.5 text-[10px] font-medium uppercase leading-relaxed tracking-wider text-[#f1cf6b] sm:text-[11px]">{member.role}</p>
+        <p className="mt-1.5 text-[10px] font-medium leading-relaxed tracking-wider text-[#f1cf6b] sm:text-[11px]">{member.role}</p>
       </div>
     </article>
   );
