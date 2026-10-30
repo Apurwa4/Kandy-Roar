@@ -30,12 +30,12 @@ const eb: Group[] = [
 ];
 
 const oc: Group[] = [
-  { title: "Organizing Committee Presidents", members: [portrait("Ehaparan", "OC President"), portrait("Midhunesh", "OC President")] },
-  { title: "Finance", members: [portrait("Apurwa", "OC Vice President · Finance")] },
-  { title: "Delegate Experience", members: [portrait("Kavishka", "OC Vice President · Delegate Experience"), portrait("Roneth", "OC Member · Delegate Experience"), portrait("Vidunika", "OC Member · Delegate Experience"), portrait("Dilshini", "OC Member · Delegate Experience")] },
-  { title: "Marketing", members: [portrait("Hansani", "OC Vice President · Marketing"), portrait("Hindujjah", "OC Vice President · Marketing"), portrait("Kavithanjali", "OC Member · Marketing"), portrait("Dinuja", "OC Member · Marketing")] },
-  { title: "External Relations", members: [portrait("Nethmi", "OC Vice President · External Relations"), portrait("Sineka", "OC Vice President · External Relations"), portrait("Dilshan", "OC Member · External Relations"), portrait("Shakthi", "OC Member · External Relations"), portrait("Tanya", "OC Member · External Relations")] },
-  { title: "Events & Logistics", members: [portrait("Kavinethere", "OC Vice President · Events & Logistics"), portrait("Isuru", "OC Vice President · Events & Logistics"), portrait("Umindu", "OC Member · Events & Logistics"), portrait("Avidu", "OC Member · Events & Logistics"), portrait("Rusdi", "OC Member · Events & Logistics")] },
+  { title: "Organizing Committee Presidents", members: [portrait("Ehaparan", "OCP"), portrait("Midhunesh", "OCP")] },
+  { title: "Finance", members: [portrait("Apurwa", "OCVP")] },
+  { title: "Delegate Experience", members: [portrait("Kavishka", "OCVP"), portrait("Roneth", "OCM"), portrait("Vidunika", "OCM"), portrait("Dilshini", "OCM")] },
+  { title: "Marketing", members: [portrait("Hansani", "OCVP"), portrait("Hindujjah", "OCVP"), portrait("Kavithanjali", "OCM"), portrait("Dinuja", "OCM")] },
+  { title: "External Relations", members: [portrait("Nethmi", "OCVP"), portrait("Sineka", "OCVP"), portrait("Dilshan", "OCM"), portrait("Shakthi", "OCM"), portrait("Tanya", "OCM")] },
+  { title: "Events & Logistics", members: [portrait("Kavinethere", "OCVP"), portrait("Isuru", "OCVP"), portrait("Umindu", "OCM"), portrait("Avidu", "OCM"), portrait("Rusdi", "OCM")] },
 ];
 
 function MemberCard({ member }: { member: Member }) {
