@@ -79,13 +79,13 @@ export default function ConferenceTeam() {
                 setCommittee(next === 0 ? "EB" : "OC"); tabs.current[next]?.focus();
               }
             }} className={`flex flex-1 items-center justify-center gap-2 rounded-full px-6 py-3 text-sm font-bold tracking-widest transition-colors focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#fae19c] ${committee === tab ? "gold-btn" : "text-[#fae19c]/70 hover:text-[#fae19c]"}`}>
-            {tab === "EB" ? <Crown size={16} /> : <Users size={16} />}{tab}
+            {tab === "EB" ? <Crown size={16} /> : <Users size={16} />}{tab === "EB" ? "FACI's" : tab}
           </button>
         ))}
       </div>
       {(["EB", "OC"] as const).map(panel => (
       <div key={panel} id={`team-panel-${panel}`} role="tabpanel" aria-labelledby={`team-tab-${panel}`} hidden={committee !== panel} tabIndex={0} className="focus-visible:outline-[#d4af37]">
-        <h3 className="text-center font-heading text-xl text-[#fae19c]">{panel === "EB" ? "Executive Board" : "Organizing Committee"}</h3>
+        <h3 className="text-center font-heading text-xl text-[#fae19c]">{panel === "EB" ? "FACI's" : "Organizing Committee"}</h3>
         {(panel === "EB" ? eb : oc).map(group => (
           <div key={group.title} className="mt-12 sm:mt-16">
             <div className="mb-7 flex items-center justify-center gap-4 text-center">
