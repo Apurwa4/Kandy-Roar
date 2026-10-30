@@ -6,7 +6,7 @@ import Hero from "@/components/Hero";
 import RoyalDecree from "@/components/RoyalDecree";
 import RoyalRegistrationForm from "@/components/RoyalRegistrationForm";
 import Footer from "@/components/Footer";
-import CommunityPhoto from "@/components/CommunityPhoto";
+import CommunityPhoto, { TogetherWeRoar } from "@/components/CommunityPhoto";
 import RecapVideos from "@/components/RecapVideos";
 import PageAtmosphere from "@/components/PageAtmosphere";
 import SectionDivider from "@/components/SectionDivider";
@@ -55,8 +55,7 @@ export default function Home() {
         {/* The Royal Registration Form Portal */}
         <RoyalRegistrationForm />
         <SectionDivider />
-        <CommunityPhoto kind="eb" />
-        <CommunityPhoto kind="members" />
+        <TogetherWeRoar />
         <SectionDivider />
         <ConferenceTeam />
       </main>

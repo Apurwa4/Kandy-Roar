@@ -33,6 +33,35 @@ const stories = {
   description: string; alt: string;
 }>;
 
+export function TogetherWeRoar() {
+  return (
+    <section aria-labelledby="together-we-roar" className="section-shell relative">
+      <div className="mb-7 text-center">
+        <h2 id="together-we-roar" className="section-title text-[#fae19c]">Together we Roar</h2>
+        <p className="section-description mx-auto mt-3 max-w-2xl text-[#f6eedb]/70">
+          United by purpose. Connected by the people who make every roar possible.
+        </p>
+      </div>
+      <div className="mx-auto grid max-w-5xl items-start gap-6 md:grid-cols-2">
+        {(["eb", "members"] as const).map(kind => (
+          <figure key={kind} data-reveal className="page-reveal relative mx-auto w-full max-w-lg rounded-2xl border border-[#d4af37]/40 bg-[#23040a] p-2 shadow-[0_16px_60px_-20px_rgba(212,175,55,0.25)] sm:p-3">
+            <Image
+              src={stories[kind].image}
+              alt={stories[kind].alt}
+              sizes="(min-width: 768px) 488px, (min-width: 544px) 488px, calc(100vw - 56px)"
+              placeholder="blur"
+              className="h-auto w-full rounded-xl"
+            />
+            <figcaption className="px-2 pb-1 pt-3 text-center text-[10px] font-semibold uppercase tracking-[0.18em] text-[#d4af37]">
+              {stories[kind].label}
+            </figcaption>
+          </figure>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 export default function CommunityPhoto({ kind }: { kind: keyof typeof stories }) {
   const sectionRef = useRef<HTMLElement>(null);
   const frameRef = useRef<HTMLElement>(null);
