@@ -9,23 +9,23 @@ type Group = { title: string; members: Member[] };
 
 const portrait = (name: string, role: string): Member => ({ name, role, image: `/images/team/${name.toLowerCase()}.png` });
 const eb: Group[] = [
-  { title: "President", members: [{ name: "Lahiru", role: "LCP", image: "/images/team/lahiru-dinusha.png" }] },
-  { title: "Vice Presidents", members: [
-    { name: "Shahnaas", role: "LCVP · BD", image: "/images/team/shahnaas.png" },
-    { name: "Sayuni", role: "LCVP · EM", image: "/images/team/sayuni.png" },
-    { name: "Pavithri", role: "LCVP · FnL", image: "/images/team/pavithri.png" },
-    { name: "Shahla", role: "LCVP · iGT B2B & VD", image: "/images/team/shahla.png" },
-    { name: "Binni", role: "LCVP · iGT M & IR", image: "/images/team/binni.png" },
-    { name: "Ihara", role: "LCVP · iGV B2B", image: "/images/team/ihara.png" },
-    { name: "Inuri", role: "LCVP · iGV M & IR", image: "/images/team/inuri.png" },
-    { name: "Nikila", role: "LCVP · iGV VD", image: "/images/team/nikila.png" },
-    { name: "Thushanth", role: "LCVP · MKT", image: "/images/team/thushanth.png" },
-    { name: "Zahra", role: "LCVP · oGTa", image: "/images/team/zahra.png" },
-    { name: "Jayani", role: "LCVP · oGTe", image: "/images/team/jayani.png" },
-    { name: "Devmi", role: "LCVP · oGV B2B & B2C", image: "/images/team/devmi.png" },
-    { name: "Yethmini", role: "LCVP · oGV PS", image: "/images/team/yethmini.png" },
-    { name: "Harindu", role: "LCVP · PR", image: "/images/team/harindu.png" },
-    { name: "Fathima", role: "LCVP · TM", image: "/images/team/fathima.png" },
+  { title: "Local Committee President", members: [{ name: "Lahiru", role: "LCP", image: "/images/team/lahiru-dinusha.png" }] },
+  { title: "Local Committee Vice Presidents", members: [
+    { name: "Shahnaas", role: "BD", image: "/images/team/shahnaas.png" },
+    { name: "Sayuni", role: "EM", image: "/images/team/sayuni.png" },
+    { name: "Pavithri", role: "FnL", image: "/images/team/pavithri.png" },
+    { name: "Shahla", role: "iGT B2B & VD", image: "/images/team/shahla.png" },
+    { name: "Binni", role: "iGT M & IR", image: "/images/team/binni.png" },
+    { name: "Ihara", role: "iGV B2B", image: "/images/team/ihara.png" },
+    { name: "Inuri", role: "iGV M & IR", image: "/images/team/inuri.png" },
+    { name: "Nikila", role: "iGV VD", image: "/images/team/nikila.png" },
+    { name: "Thushanth", role: "MKT", image: "/images/team/thushanth.png" },
+    { name: "Zahra", role: "oGTa", image: "/images/team/zahra.png" },
+    { name: "Jayani", role: "oGTe", image: "/images/team/jayani.png" },
+    { name: "Devmi", role: "oGV B2B & B2C", image: "/images/team/devmi.png" },
+    { name: "Yethmini", role: "oGV PS", image: "/images/team/yethmini.png" },
+    { name: "Harindu", role: "PR", image: "/images/team/harindu.png" },
+    { name: "Fathima", role: "TM", image: "/images/team/fathima.png" },
   ] },
 ];
 
