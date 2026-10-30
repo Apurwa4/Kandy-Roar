@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, type PointerEvent } from "react";
 import Image, { type StaticImageData } from "next/image";
 import groupPhoto from "../../public/images/group image.jpg";
 import ebPhoto from "../../public/images/eb image.jpg";
@@ -34,6 +34,21 @@ const stories = {
 }>;
 
 export function TogetherWeRoar() {
+  const followCursor = (event: PointerEvent<HTMLDivElement>) => {
+    if (event.pointerType !== "mouse" || !window.matchMedia("(hover: hover) and (prefers-reduced-motion: no-preference)").matches) return;
+    const frame = event.currentTarget;
+    const bounds = frame.getBoundingClientRect();
+    const x = Math.max(-1, Math.min(1, (event.clientX - bounds.left) / bounds.width * 2 - 1));
+    const y = Math.max(-1, Math.min(1, (event.clientY - bounds.top) / bounds.height * 2 - 1));
+    frame.style.setProperty("--photo-tilt-x", `${-y * 4}deg`);
+    frame.style.setProperty("--photo-tilt-y", `${x * 4}deg`);
+  };
+
+  const resetPhoto = (event: PointerEvent<HTMLDivElement>) => {
+    event.currentTarget.style.removeProperty("--photo-tilt-x");
+    event.currentTarget.style.removeProperty("--photo-tilt-y");
+  };
+
   return (
     <section aria-labelledby="together-we-roar" className="section-shell relative">
       <div className="mb-7 text-center">
@@ -44,7 +59,8 @@ export function TogetherWeRoar() {
       </div>
       <div className="mx-auto grid max-w-5xl items-start gap-6 md:grid-cols-2">
         {(["eb", "members"] as const).map(kind => (
-          <figure key={kind} data-reveal className="page-reveal relative mx-auto w-full max-w-lg rounded-2xl border border-[#d4af37]/40 bg-[#23040a] p-2 shadow-[0_16px_60px_-20px_rgba(212,175,55,0.25)] sm:p-3">
+          <div key={kind} data-reveal onPointerMove={followCursor} onPointerLeave={resetPhoto} onPointerCancel={resetPhoto} className="together-photo page-reveal mx-auto w-full max-w-lg">
+          <figure className="together-photo-frame relative rounded-2xl border border-[#d4af37]/40 bg-[#23040a] p-2 shadow-[0_16px_60px_-20px_rgba(212,175,55,0.25)] sm:p-3">
             <Image
               src={stories[kind].image}
               alt={stories[kind].alt}
@@ -53,6 +69,7 @@ export function TogetherWeRoar() {
               className="h-auto w-full rounded-xl"
             />
           </figure>
+          </div>
         ))}
       </div>
     </section>
