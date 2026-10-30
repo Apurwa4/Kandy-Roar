@@ -1,7 +1,7 @@
 import Image from "next/image";
 
 const artwork = {
-  dancer: "/images/kandyan-dancer.png",
+  dancer: "/images/wes-dancer.png",
   elephant: "/images/kandyan-procession-elephant.png",
   scroll: "/images/kandyan-royal-scroll.png",
 };

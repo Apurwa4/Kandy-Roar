@@ -10,7 +10,7 @@ const recaps = [
     id: "yjTzw_muhq8",
     label: "Day 01 · Recap",
     videoTitle: "Kandy Roar Day 1 recap",
-    title: "Where the roar began.",
+    title: "A glimpse from the past.",
     description: "Step back into the first day of our last Kandy Roar.",
   },
   {
