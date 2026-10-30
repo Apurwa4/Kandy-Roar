@@ -52,7 +52,7 @@ export default function RoyalDecree() {
           your leadership journey.
         </p>
         </div>
-        <KingdomArtwork kind="dancer" className="h-32 w-24 md:h-44 md:w-32" sizes="(min-width: 768px) 128px, 96px" />
+        <KingdomArtwork kind="dancer" className="h-40 w-40 md:h-48 md:w-48" sizes="(min-width: 768px) 192px, 160px" />
       </div>
 
       <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-5">
