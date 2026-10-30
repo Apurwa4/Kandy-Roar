@@ -40,7 +40,7 @@ const oc: Group[] = [
 
 function MemberCard({ member }: { member: Member }) {
   return (
-    <article className="team-card group flex h-full w-full max-w-[250px] flex-col overflow-hidden rounded-t-[6rem] rounded-b-xl border border-[#d4af37]/30 text-center">
+    <article className="team-card group flex h-full w-full max-w-[220px] flex-col overflow-hidden rounded-t-[5.5rem] rounded-b-xl border border-[#d4af37]/30 text-center">
       <div className="team-portrait relative mx-3 mt-3 aspect-[4/5] overflow-hidden rounded-t-[5.5rem]">
         {!member.image ? (
           <div className="absolute inset-0 flex flex-col items-center justify-center gap-3 text-[#d4af37]/50" aria-label={`Portrait of ${member.name} coming soon`}>
@@ -48,12 +48,12 @@ function MemberCard({ member }: { member: Member }) {
             <span className="text-[10px] uppercase tracking-widest">Portrait coming soon</span>
           </div>
         ) : (
-          <Image src={member.image} alt={member.name} fill sizes="(max-width: 480px) 44vw, 250px" className="object-contain object-bottom transition-transform duration-500 motion-safe:group-hover:scale-[1.035]" />
+          <Image src={member.image} alt={member.name} fill sizes="(max-width: 480px) 44vw, 220px" className="object-contain object-bottom transition-transform duration-500 motion-safe:group-hover:scale-[1.035]" />
         )}
       </div>
-      <div className="relative min-h-28 flex-1 border-t border-[#d4af37]/25 bg-[#1c060d]/90 px-3 py-5">
-        <h5 className="font-heading text-base font-bold text-[#f6eedb] sm:text-lg">{member.name}</h5>
-        <p className="mt-2 text-[10px] font-medium uppercase leading-relaxed tracking-wider text-[#f1cf6b] sm:text-xs">{member.role}</p>
+      <div className="relative min-h-24 flex-1 border-t border-[#d4af37]/25 bg-[#1c060d]/90 px-3 py-4">
+        <h5 className="font-heading text-base font-bold text-[#f6eedb]">{member.name}</h5>
+        <p className="mt-1.5 text-[10px] font-medium uppercase leading-relaxed tracking-wider text-[#f1cf6b] sm:text-[11px]">{member.role}</p>
       </div>
     </article>
   );
@@ -93,8 +93,21 @@ export default function ConferenceTeam() {
               <h4 className="text-xs font-semibold uppercase tracking-[0.18em] text-[#f1cf6b] sm:text-sm">{group.title}</h4>
               <span aria-hidden="true" className="h-px w-8 bg-[#d4af37]/40 sm:w-16" />
             </div>
-            <div className="flex flex-wrap justify-center gap-x-4 gap-y-7 sm:gap-x-6">
-              {group.members.map(member => <div key={member.name} className={`flex justify-center ${group.members.length <= 2 ? "w-full max-w-[250px]" : "w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[calc(25%-1.125rem)]"}`}><MemberCard member={member} /></div>)}
+            <div className={`flex flex-wrap justify-center gap-x-4 gap-y-6 sm:gap-x-6 ${group.members.length === 5 ? "lg:mx-auto lg:max-w-[708px]" : ""}`}>
+              {group.members.map(member => (
+                <div
+                  key={member.name}
+                  className={`flex justify-center ${
+                    group.members.length <= 2
+                      ? "w-full max-w-[220px]"
+                      : group.members.length === 5
+                        ? "w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)]"
+                        : "w-[calc(50%-0.5rem)] sm:w-[calc(33.333%-1rem)] lg:w-[calc(25%-1.125rem)]"
+                  }`}
+                >
+                  <MemberCard member={member} />
+                </div>
+              ))}
             </div>
           </div>
         ))}
