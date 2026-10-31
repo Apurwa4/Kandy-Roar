@@ -22,7 +22,7 @@ function sendRegistrationConfirmation(data) {
       "Registration code: " + code,
       "Villager name: " + name,
       "Entity: " + entity,
-      "Email: " + email,
+      "Villager Outpost: " + email,
       "Gathering dates: 9th–10th January (Tentative)",
       "Royal Duty Approved",
       "",
@@ -124,7 +124,7 @@ function buildRegistrationEmailHtml(data, hasInlineLogo) {
                 <tr><td style="padding:18px 0;font-size:15px;line-height:1.8;overflow-wrap:anywhere;word-break:break-word;">
                   <p style="margin:0 0 8px;"><strong>Villager Name:</strong> ${name}</p>
                   <p style="margin:0 0 8px;"><strong>Kingdom / Entity:</strong> ${entity}</p>
-                  <p style="margin:0 0 8px;"><strong>Royal Messenger:</strong> ${email}</p>
+                  <p style="margin:0 0 8px;"><strong>Villager Outpost:</strong> ${email}</p>
                   <p style="margin:0;"><strong>Gathering Dates:</strong> 9th–10th January (Tentative)</p>
                 </td></tr>
               </table>
