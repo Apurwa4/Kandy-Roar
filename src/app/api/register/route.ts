@@ -26,7 +26,7 @@ export async function GET() {
 export async function POST(req: NextRequest) {
   if (!getRegistrationCountdown().isLive) {
     return NextResponse.json(
-      { success: false, error: "Registrations open on 1 November 2026 at 12:00 AM.", opensAt: REGISTRATION_OPENS_AT },
+      { success: false, error: "Registrations open soon.", opensAt: REGISTRATION_OPENS_AT },
       { status: 403 }
     );
   }

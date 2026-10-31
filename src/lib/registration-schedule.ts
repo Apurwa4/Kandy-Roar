@@ -1,4 +1,4 @@
-export const REGISTRATION_OPENS_AT = "2026-11-01T00:00:00+05:30";
+export const REGISTRATION_OPENS_AT = "2026-10-31T19:00:00+05:30";
 
 export function getRegistrationCountdown(now = Date.now()) {
   const remaining = Math.max(0, new Date(REGISTRATION_OPENS_AT).getTime() - now);

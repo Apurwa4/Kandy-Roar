@@ -245,7 +245,7 @@ export default function RoyalRegistrationForm() {
       {!countdown.isLive ? (
         <div className="parchment-scroll rounded-3xl p-8 sm:p-12 text-center space-y-4">
           <h3 className="font-heading font-bold text-2xl text-[#750f24]">The Royal Registry Opens Soon</h3>
-          <p className="text-sm text-[#4a2e2b]">Registrations open on 1 November 2026 at 12:00 AM.</p>
+          <p className="text-sm text-[#4a2e2b]">Registrations open soon.</p>
           <p role="timer" aria-label="Time until registration opens" className="font-mono font-bold text-xl sm:text-3xl text-[#750f24]">
             {countdown.days}d : {countdown.hours}h : {countdown.minutes}m : {countdown.seconds}s
           </p>

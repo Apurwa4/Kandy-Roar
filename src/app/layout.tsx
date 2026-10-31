@@ -18,7 +18,7 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://kandyroar7.aiesec.lk"),
   title: "Kandy Roar 7.0 | The Kandyan Kingdom • AIESEC in Kandy LDS",
   description:
-    "A Royal Proclamation to all villagers of the Kingdom of Kandy! Join us as we celebrate 10 glorious years of AIESEC in Kandy at Kandy Roar 7.0. Registrations open 1 November 2026.",
+    "A Royal Proclamation to all villagers of the Kingdom of Kandy! Join us as we celebrate 10 glorious years of AIESEC in Kandy at Kandy Roar 7.0. Registrations open soon.",
   keywords: [
     "Kandy Roar 7.0",
     "AIESEC in Kandy",
@@ -30,7 +30,7 @@ export const metadata: Metadata = {
   ],
   authors: [{ name: "AIESEC in Kandy" }],
   openGraph: {
-    title: "Kandy Roar 7.0 | A Royal Proclamation • Registrations Open 1 November",
+    title: "Kandy Roar 7.0 | A Royal Proclamation • Registrations Open Soon",
     description:
       "Answer the royal call, fulfil your royal duty, and become part of this grand gathering celebrating 10 glorious years of AIESEC in Kandy.",
     images: ["/images/kandy-roar-poster.jpg"],

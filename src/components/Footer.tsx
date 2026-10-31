@@ -63,7 +63,7 @@ export default function Footer() {
 
             <p className="flex items-center gap-2.5 font-mono text-[10px] uppercase tracking-[0.2em] text-[#f6eedb]/70">
               <span aria-hidden="true" className="h-1.5 w-1.5 shrink-0 rounded-full bg-[#bd1836]" />
-              {isLive ? "The Gates Are Open" : "Registrations Open 1 November"}
+              {isLive ? "The Gates Are Open" : "Registrations open soon"}
             </p>
           </div>
 

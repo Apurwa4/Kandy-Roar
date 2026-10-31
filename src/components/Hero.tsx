@@ -60,7 +60,7 @@ export default function Hero({ onRegisterClick }: HeroProps) {
             <div className="hero-registration-panel mx-auto max-w-xl rounded-2xl p-5 text-left sm:p-6 lg:mx-0">
               <div className="flex items-center gap-2 text-xs font-semibold text-[#fae19c] sm:text-sm">
                 <Clock aria-hidden="true" className="h-4 w-4 shrink-0 text-[#d4af37]" />
-                <p>{timeLeft.isLive ? "Your next chapter starts here" : "Registration opens 1 November"}</p>
+                <p>{timeLeft.isLive ? "Your next chapter starts here" : "Registrations open soon"}</p>
               </div>
 
               {!timeLeft.isLive && (
@@ -73,7 +73,7 @@ export default function Hero({ onRegisterClick }: HeroProps) {
                       </div>
                     ))}
                   </div>
-                  <p className="mt-3 text-center text-[11px] text-[#f6eedb]/55">1 November 2026 · 12:00 AM</p>
+                  <p className="mt-3 text-center text-[11px] text-[#f6eedb]/55">31 October 2026 · 7:00 PM</p>
                 </>
               )}
 
