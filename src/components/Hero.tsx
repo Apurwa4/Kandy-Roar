@@ -40,7 +40,7 @@ export default function Hero({ onRegisterClick }: HeroProps) {
 
             <div className="space-y-3">
               <h1 id="hero-heading" className="font-heading text-2xl font-bold leading-tight sm:text-3xl lg:text-4xl">
-                <span className="gold-text">{timeLeft.isLive ? "The Gates Are Open" : "The Gates Open Soon"}</span>
+                <span className="gold-text">{timeLeft.isLive ? "The Gates Are Officially Open" : "The Gates Open Soon"}</span>
               </h1>
               <p className="mx-auto max-w-xs text-sm leading-relaxed text-[#f6eedb]/75 sm:hidden">
                 Two days of leadership, connection, and Kandyan spirit.
